@@ -167,6 +167,26 @@ function renderBuilder() {
   updatePreview();
 }
 
+function selectTemplateById(templateId) {
+  if (!TEMPLATES.some((template) => template.id === templateId)) return;
+  state.selectedId = templateId;
+  renderTemplates();
+  renderBuilder();
+}
+
+function setDashboardCategory(category) {
+  if (!CATEGORY_LABELS[category]) return;
+  state.category = category;
+  renderCategories();
+  renderTemplates();
+}
+
+function setDashboardSearch(query) {
+  state.search = query || "";
+  els.searchInput.value = state.search;
+  renderTemplates();
+}
+
 function updatePageSeo(template) {
   const title = `Free ${template.name} — Download PDF | Contract Generator`;
   const description = `Generate a free ${template.name} and download as PDF instantly. Fill in your details and get a professional ${template.name} in seconds. No signup required.`;
@@ -341,6 +361,12 @@ function init() {
   els.exportJsonBtn.addEventListener("click", () => {
     downloadText("contract-templates.json", JSON.stringify(TEMPLATES, null, 2), "application/json");
   });
+
+  window.contractDashboard = {
+    showCategory: setDashboardCategory,
+    search: setDashboardSearch,
+    selectTemplate: selectTemplateById
+  };
 }
 
 init();

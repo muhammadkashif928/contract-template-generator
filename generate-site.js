@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-const SITE_URL = "https://muhammadkashif928.github.io/contract-template-generator";
+const SITE_URL = "https://contract-template-generator-lake.vercel.app";
 const source = fs.readFileSync("templates.js", "utf8") + "\nthis.TEMPLATES = TEMPLATES; this.CATEGORY_LABELS = CATEGORY_LABELS;";
 const context = {};
 vm.createContext(context);

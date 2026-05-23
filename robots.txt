@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
-Sitemap: https://muhammadkashif928.github.io/contract-template-generator/sitemap.xml
+Sitemap: https://contract-template-generator-lake.vercel.app/sitemap.xml
