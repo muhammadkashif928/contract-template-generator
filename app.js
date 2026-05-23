@@ -136,6 +136,7 @@ function renderBuilder() {
   els.emptyState.classList.toggle("hidden", Boolean(template));
   els.builder.classList.toggle("hidden", !template);
   if (!template) return;
+  updatePageSeo(template);
 
   state.values[template.id] ||= {};
   els.selectedMeta.innerHTML = `
@@ -164,6 +165,22 @@ function renderBuilder() {
     `;
   }).join("");
   updatePreview();
+}
+
+function updatePageSeo(template) {
+  const title = `Free ${template.name} — Download PDF | Contract Generator`;
+  const description = `Generate a free ${template.name} and download as PDF instantly. Fill in your details and get a professional ${template.name} in seconds. No signup required.`;
+  document.title = title;
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) metaDescription.setAttribute("content", description);
+  for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) {
+    const node = document.querySelector(selector);
+    if (node) node.setAttribute("content", title);
+  }
+  for (const selector of ['meta[property="og:description"]', 'meta[name="twitter:description"]']) {
+    const node = document.querySelector(selector);
+    if (node) node.setAttribute("content", description);
+  }
 }
 
 function fieldValue(field) {
@@ -317,9 +334,8 @@ function init() {
     window.setTimeout(() => (els.copyBtn.textContent = "Copy"), 1200);
   });
   els.downloadBtn.addEventListener("click", () => {
-    const template = selectedTemplate();
-    if (!template) return;
-    downloadText(`${template.id}.txt`, els.contractPreview.textContent);
+    updatePreview();
+    window.print();
   });
   els.printBtn.addEventListener("click", () => window.print());
   els.exportJsonBtn.addEventListener("click", () => {
