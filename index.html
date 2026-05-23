@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contract Template Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Template filters">
+        <div class="brand">
+          <span class="brand-mark">CT</span>
+          <div>
+            <h1>Contract Generator</h1>
+            <p>Pick a template, fill the fields, export a draft.</p>
+          </div>
+        </div>
+
+        <label class="search-box">
+          <span>Search</span>
+          <input id="searchInput" type="search" placeholder="Lease, NDA, freelance..." />
+        </label>
+
+        <div class="filter-heading">Categories</div>
+        <nav id="categoryList" class="category-list" aria-label="Categories"></nav>
+
+        <div class="catalog-stats">
+          <strong id="templateCount">0</strong>
+          <span>templates loaded</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <section class="template-panel" aria-label="Templates">
+          <div class="panel-header">
+            <div>
+              <h2 id="categoryTitle">All Templates</h2>
+              <p id="categorySubtitle">Browse the full catalog.</p>
+            </div>
+            <button id="exportJsonBtn" class="icon-button" type="button" title="Export template JSON" aria-label="Export template JSON">
+              <span aria-hidden="true">↓</span>
+            </button>
+          </div>
+          <div id="templateGrid" class="template-grid"></div>
+        </section>
+
+        <section class="builder-panel" aria-label="Contract builder">
+          <div id="emptyState" class="empty-state">
+            <h2>Choose a template</h2>
+            <p>Select a contract type to generate a customized draft.</p>
+          </div>
+
+          <div id="builder" class="builder hidden">
+            <div class="builder-header">
+              <div>
+                <div id="selectedMeta" class="selected-meta"></div>
+                <h2 id="selectedName"></h2>
+                <p id="selectedDescription"></p>
+              </div>
+              <button id="clearBtn" class="ghost-button" type="button">Clear</button>
+            </div>
+
+            <form id="fieldForm" class="field-form"></form>
+
+            <div class="actions">
+              <button id="generateBtn" class="primary-button" type="button">Generate Draft</button>
+              <button id="copyBtn" class="secondary-button" type="button">Copy</button>
+              <button id="downloadBtn" class="secondary-button" type="button">Download</button>
+              <button id="printBtn" class="secondary-button" type="button">Print</button>
+            </div>
+
+            <article class="preview-wrap">
+              <header>
+                <h3>Draft Preview</h3>
+                <span id="validationStatus">Complete the required fields</span>
+              </header>
+              <pre id="contractPreview"></pre>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="templates.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

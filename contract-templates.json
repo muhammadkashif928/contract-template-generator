@@ -1,0 +1,928 @@
+[
+  {
+    "id": "freelance-contract",
+    "name": "Freelance Service Contract",
+    "category": "freelance",
+    "icon": "💼",
+    "searches": "45K/mo",
+    "description": "General freelance work agreement between client and contractor",
+    "fields": [
+      "client_name",
+      "client_company",
+      "client_address",
+      "contractor_name",
+      "contractor_address",
+      "project_name",
+      "project_description",
+      "start_date",
+      "end_date",
+      "payment_amount",
+      "payment_schedule",
+      "revision_rounds"
+    ],
+    "popular": true,
+    "featured": true
+  },
+  {
+    "id": "web-design-contract",
+    "name": "Web Design Contract",
+    "category": "freelance",
+    "icon": "🖥️",
+    "searches": "35K/mo",
+    "description": "Contract for website design and development projects",
+    "fields": [
+      "client_name",
+      "designer_name",
+      "website_type",
+      "deliverables",
+      "timeline",
+      "total_cost",
+      "deposit_amount",
+      "revision_policy",
+      "ownership_rights"
+    ],
+    "popular": true
+  },
+  {
+    "id": "graphic-design-contract",
+    "name": "Graphic Design Contract",
+    "category": "freelance",
+    "icon": "🎨",
+    "searches": "28K/mo",
+    "description": "Agreement for graphic design services and deliverables",
+    "fields": [
+      "client_name",
+      "designer_name",
+      "project_scope",
+      "deliverables",
+      "file_formats",
+      "deadline",
+      "fee",
+      "kill_fee",
+      "copyright_ownership"
+    ]
+  },
+  {
+    "id": "photography-contract",
+    "name": "Photography Contract",
+    "category": "freelance",
+    "icon": "📸",
+    "searches": "40K/mo",
+    "description": "Photography service agreement with usage rights",
+    "fields": [
+      "client_name",
+      "photographer_name",
+      "event_type",
+      "event_date",
+      "event_location",
+      "hours_covered",
+      "total_fee",
+      "deposit",
+      "image_delivery_days",
+      "usage_rights"
+    ],
+    "popular": true
+  },
+  {
+    "id": "social-media-contract",
+    "name": "Social Media Management Contract",
+    "category": "freelance",
+    "icon": "📱",
+    "searches": "22K/mo",
+    "description": "Agreement for ongoing social media management services",
+    "fields": [
+      "client_name",
+      "manager_name",
+      "platforms",
+      "posts_per_month",
+      "monthly_fee",
+      "contract_duration",
+      "content_approval_process"
+    ]
+  },
+  {
+    "id": "consulting-contract",
+    "name": "Consulting Agreement",
+    "category": "freelance",
+    "icon": "🤝",
+    "searches": "30K/mo",
+    "description": "Professional consulting services agreement",
+    "fields": [
+      "client_name",
+      "consultant_name",
+      "consulting_scope",
+      "hourly_rate",
+      "estimated_hours",
+      "start_date",
+      "confidentiality_clause",
+      "termination_notice"
+    ],
+    "popular": true
+  },
+  {
+    "id": "video-production-contract",
+    "name": "Video Production Contract",
+    "category": "freelance",
+    "icon": "🎬",
+    "searches": "18K/mo",
+    "description": "Agreement for video production and editing services",
+    "fields": [
+      "client_name",
+      "producer_name",
+      "project_title",
+      "video_length",
+      "shoot_dates",
+      "delivery_date",
+      "total_fee",
+      "revisions",
+      "copyright_terms"
+    ]
+  },
+  {
+    "id": "copywriting-contract",
+    "name": "Copywriting Contract",
+    "category": "freelance",
+    "icon": "✍️",
+    "searches": "15K/mo",
+    "description": "Content and copywriting services agreement",
+    "fields": [
+      "client_name",
+      "writer_name",
+      "content_type",
+      "word_count",
+      "deadline",
+      "rate_per_word",
+      "revision_rounds",
+      "copyright_transfer"
+    ]
+  },
+  {
+    "id": "employment-contract",
+    "name": "Employment Contract",
+    "category": "employment",
+    "icon": "👔",
+    "searches": "80K/mo",
+    "description": "Full-time employment agreement between employer and employee",
+    "fields": [
+      "employer_name",
+      "employer_address",
+      "employee_name",
+      "employee_address",
+      "job_title",
+      "department",
+      "start_date",
+      "salary",
+      "pay_frequency",
+      "working_hours",
+      "probation_period",
+      "benefits",
+      "notice_period"
+    ],
+    "popular": true,
+    "featured": true
+  },
+  {
+    "id": "part-time-contract",
+    "name": "Part-Time Employment Contract",
+    "category": "employment",
+    "icon": "⏰",
+    "searches": "35K/mo",
+    "description": "Part-time work agreement with flexible hours",
+    "fields": [
+      "employer_name",
+      "employee_name",
+      "job_title",
+      "hours_per_week",
+      "hourly_rate",
+      "start_date",
+      "location"
+    ],
+    "popular": true
+  },
+  {
+    "id": "independent-contractor",
+    "name": "Independent Contractor Agreement",
+    "category": "employment",
+    "icon": "📋",
+    "searches": "55K/mo",
+    "description": "1099 contractor agreement defining work relationship",
+    "fields": [
+      "company_name",
+      "contractor_name",
+      "services_description",
+      "rate",
+      "payment_terms",
+      "project_duration",
+      "ip_ownership",
+      "confidentiality"
+    ],
+    "popular": true,
+    "featured": true
+  },
+  {
+    "id": "nda-agreement",
+    "name": "Non-Disclosure Agreement (NDA)",
+    "category": "employment",
+    "icon": "🔒",
+    "searches": "90K/mo",
+    "description": "Confidentiality agreement to protect sensitive information",
+    "fields": [
+      "disclosing_party",
+      "receiving_party",
+      "effective_date",
+      "confidential_information_definition",
+      "duration_of_confidentiality",
+      "governing_state"
+    ],
+    "popular": true,
+    "featured": true
+  },
+  {
+    "id": "non-compete",
+    "name": "Non-Compete Agreement",
+    "category": "employment",
+    "icon": "🚫",
+    "searches": "40K/mo",
+    "description": "Agreement restricting competitive activities after employment",
+    "fields": [
+      "employer_name",
+      "employee_name",
+      "restricted_activities",
+      "geographic_area",
+      "duration",
+      "consideration_paid"
+    ]
+  },
+  {
+    "id": "internship-agreement",
+    "name": "Internship Agreement",
+    "category": "employment",
+    "icon": "🎓",
+    "searches": "25K/mo",
+    "description": "Internship terms between organization and intern",
+    "fields": [
+      "company_name",
+      "intern_name",
+      "supervisor_name",
+      "start_date",
+      "end_date",
+      "hours_per_week",
+      "stipend",
+      "learning_objectives",
+      "school_name"
+    ]
+  },
+  {
+    "id": "severance-agreement",
+    "name": "Severance Agreement",
+    "category": "employment",
+    "icon": "📝",
+    "searches": "20K/mo",
+    "description": "Terms and conditions for employee separation",
+    "fields": [
+      "employer_name",
+      "employee_name",
+      "last_day",
+      "severance_amount",
+      "severance_duration",
+      "benefits_continuation",
+      "release_of_claims"
+    ]
+  },
+  {
+    "id": "residential-lease",
+    "name": "Residential Lease Agreement",
+    "category": "rental",
+    "icon": "🏠",
+    "searches": "120K/mo",
+    "description": "Complete residential rental agreement for landlords",
+    "fields": [
+      "landlord_name",
+      "landlord_address",
+      "tenant_name",
+      "property_address",
+      "monthly_rent",
+      "security_deposit",
+      "lease_start",
+      "lease_end",
+      "late_fee",
+      "pets_allowed",
+      "utilities_included",
+      "maintenance_responsibilities"
+    ],
+    "popular": true,
+    "featured": true
+  },
+  {
+    "id": "commercial-lease",
+    "name": "Commercial Lease Agreement",
+    "category": "rental",
+    "icon": "🏢",
+    "searches": "45K/mo",
+    "description": "Commercial property rental agreement for businesses",
+    "fields": [
+      "landlord_name",
+      "tenant_business_name",
+      "property_address",
+      "square_footage",
+      "monthly_rent",
+      "lease_term",
+      "permitted_use",
+      "improvement_allowance",
+      "cam_charges"
+    ],
+    "popular": true
+  },
+  {
+    "id": "month-to-month",
+    "name": "Month-to-Month Rental Agreement",
+    "category": "rental",
+    "icon": "📅",
+    "searches": "35K/mo",
+    "description": "Flexible monthly rental without long-term commitment",
+    "fields": [
+      "landlord_name",
+      "tenant_name",
+      "property_address",
+      "monthly_rent",
+      "deposit",
+      "notice_period",
+      "start_date",
+      "rules_regulations"
+    ]
+  },
+  {
+    "id": "room-rental",
+    "name": "Room Rental Agreement",
+    "category": "rental",
+    "icon": "🛏️",
+    "searches": "30K/mo",
+    "description": "Agreement for renting a single room in a property",
+    "fields": [
+      "landlord_name",
+      "tenant_name",
+      "property_address",
+      "room_description",
+      "monthly_rent",
+      "utilities_share",
+      "common_areas",
+      "house_rules",
+      "start_date"
+    ]
+  },
+  {
+    "id": "sublease-agreement",
+    "name": "Sublease Agreement",
+    "category": "rental",
+    "icon": "🔑",
+    "searches": "25K/mo",
+    "description": "Subletting agreement between tenant and subtenant",
+    "fields": [
+      "original_tenant_name",
+      "subtenant_name",
+      "property_address",
+      "sublet_start",
+      "sublet_end",
+      "monthly_rent",
+      "original_lease_terms_reference"
+    ]
+  },
+  {
+    "id": "property-management",
+    "name": "Property Management Agreement",
+    "category": "rental",
+    "icon": "🏗️",
+    "searches": "20K/mo",
+    "description": "Agreement between property owner and management company",
+    "fields": [
+      "owner_name",
+      "manager_company",
+      "property_address",
+      "management_fee_percent",
+      "services_included",
+      "maintenance_limit",
+      "accounting_frequency"
+    ]
+  },
+  {
+    "id": "partnership-agreement",
+    "name": "Business Partnership Agreement",
+    "category": "business",
+    "icon": "🤝",
+    "searches": "50K/mo",
+    "description": "Agreement defining terms between business partners",
+    "fields": [
+      "partner1_name",
+      "partner2_name",
+      "business_name",
+      "business_address",
+      "business_purpose",
+      "partner1_share",
+      "partner2_share",
+      "profit_distribution",
+      "decision_making_process",
+      "dissolution_terms"
+    ],
+    "popular": true,
+    "featured": true
+  },
+  {
+    "id": "llc-operating",
+    "name": "LLC Operating Agreement",
+    "category": "business",
+    "icon": "🏛️",
+    "searches": "65K/mo",
+    "description": "Operating agreement for Limited Liability Companies",
+    "fields": [
+      "llc_name",
+      "state_of_formation",
+      "registered_agent",
+      "member_names",
+      "membership_percentages",
+      "manager_name",
+      "voting_rights",
+      "profit_distribution",
+      "dissolution_procedure"
+    ],
+    "popular": true,
+    "featured": true
+  },
+  {
+    "id": "service-agreement",
+    "name": "Service Agreement",
+    "category": "business",
+    "icon": "⚙️",
+    "searches": "70K/mo",
+    "description": "General service contract between service provider and client",
+    "fields": [
+      "provider_name",
+      "client_name",
+      "services_description",
+      "start_date",
+      "completion_date",
+      "total_fee",
+      "payment_schedule",
+      "warranties",
+      "termination_clause"
+    ],
+    "popular": true
+  },
+  {
+    "id": "vendor-contract",
+    "name": "Vendor Contract",
+    "category": "business",
+    "icon": "📦",
+    "searches": "30K/mo",
+    "description": "Agreement between business and vendor/supplier",
+    "fields": [
+      "company_name",
+      "vendor_name",
+      "products_services",
+      "pricing",
+      "delivery_terms",
+      "payment_terms",
+      "quality_standards",
+      "contract_duration"
+    ]
+  },
+  {
+    "id": "purchase-agreement",
+    "name": "Purchase Agreement",
+    "category": "business",
+    "icon": "🛒",
+    "searches": "40K/mo",
+    "description": "Agreement for the sale and purchase of goods or assets",
+    "fields": [
+      "seller_name",
+      "buyer_name",
+      "item_description",
+      "purchase_price",
+      "payment_method",
+      "delivery_date",
+      "warranties",
+      "governing_law"
+    ]
+  },
+  {
+    "id": "joint-venture",
+    "name": "Joint Venture Agreement",
+    "category": "business",
+    "icon": "🔗",
+    "searches": "25K/mo",
+    "description": "Agreement for a joint business project between companies",
+    "fields": [
+      "party1_name",
+      "party2_name",
+      "venture_name",
+      "venture_purpose",
+      "contribution_party1",
+      "contribution_party2",
+      "profit_sharing",
+      "management"
+    ]
+  },
+  {
+    "id": "distribution-agreement",
+    "name": "Distribution Agreement",
+    "category": "business",
+    "icon": "🚛",
+    "searches": "22K/mo",
+    "description": "Agreement for product distribution rights and terms",
+    "fields": [
+      "manufacturer_name",
+      "distributor_name",
+      "products",
+      "territory",
+      "exclusivity",
+      "pricing",
+      "minimum_orders",
+      "marketing_obligations",
+      "term_length"
+    ]
+  },
+  {
+    "id": "ip-assignment",
+    "name": "IP Assignment Agreement",
+    "category": "ip",
+    "icon": "💡",
+    "searches": "20K/mo",
+    "description": "Transfer of intellectual property rights between parties",
+    "fields": [
+      "assignor_name",
+      "assignee_name",
+      "ip_description",
+      "consideration",
+      "effective_date",
+      "warranties"
+    ],
+    "popular": true
+  },
+  {
+    "id": "copyright-license",
+    "name": "Copyright License Agreement",
+    "category": "ip",
+    "icon": "©️",
+    "searches": "18K/mo",
+    "description": "License to use copyrighted material with defined terms",
+    "fields": [
+      "licensor_name",
+      "licensee_name",
+      "work_description",
+      "license_type",
+      "territory",
+      "duration",
+      "royalty_rate",
+      "permitted_uses",
+      "restrictions"
+    ]
+  },
+  {
+    "id": "software-license",
+    "name": "Software License Agreement",
+    "category": "ip",
+    "icon": "💻",
+    "searches": "28K/mo",
+    "description": "License for use of software products",
+    "fields": [
+      "licensor_name",
+      "licensee_name",
+      "software_name",
+      "license_type",
+      "number_of_users",
+      "license_fee",
+      "support_terms",
+      "updates_included",
+      "restrictions"
+    ]
+  },
+  {
+    "id": "brand-ambassador",
+    "name": "Brand Ambassador Agreement",
+    "category": "ip",
+    "icon": "⭐",
+    "searches": "22K/mo",
+    "description": "Agreement for brand representation and promotion",
+    "fields": [
+      "company_name",
+      "ambassador_name",
+      "brand_description",
+      "duties",
+      "compensation",
+      "exclusivity_clause",
+      "social_media_requirements",
+      "contract_duration"
+    ]
+  },
+  {
+    "id": "loan-agreement",
+    "name": "Personal Loan Agreement",
+    "category": "personal",
+    "icon": "💰",
+    "searches": "60K/mo",
+    "description": "Formal loan agreement between individuals",
+    "fields": [
+      "lender_name",
+      "borrower_name",
+      "loan_amount",
+      "interest_rate",
+      "repayment_start",
+      "monthly_payment",
+      "loan_duration",
+      "late_payment_fee",
+      "collateral"
+    ],
+    "popular": true,
+    "featured": true
+  },
+  {
+    "id": "promissory-note",
+    "name": "Promissory Note",
+    "category": "personal",
+    "icon": "📜",
+    "searches": "35K/mo",
+    "description": "Written promise to repay a debt",
+    "fields": [
+      "borrower_name",
+      "lender_name",
+      "principal_amount",
+      "interest_rate",
+      "payment_due_date",
+      "governing_state"
+    ],
+    "popular": true
+  },
+  {
+    "id": "iou-template",
+    "name": "IOU Template",
+    "category": "personal",
+    "icon": "✋",
+    "searches": "25K/mo",
+    "description": "Simple informal acknowledgment of debt",
+    "fields": [
+      "debtor_name",
+      "creditor_name",
+      "amount_owed",
+      "date_of_debt",
+      "repayment_date",
+      "reason_for_debt"
+    ]
+  },
+  {
+    "id": "roommate-agreement",
+    "name": "Roommate Agreement",
+    "category": "personal",
+    "icon": "🏘️",
+    "searches": "30K/mo",
+    "description": "Agreement between roommates for shared living",
+    "fields": [
+      "roommate1_name",
+      "roommate2_name",
+      "property_address",
+      "rent_split",
+      "utilities_split",
+      "chores_schedule",
+      "guest_policy",
+      "quiet_hours",
+      "move_out_notice"
+    ]
+  },
+  {
+    "id": "child-custody",
+    "name": "Child Custody Agreement",
+    "category": "personal",
+    "icon": "👨‍👧",
+    "searches": "45K/mo",
+    "description": "Parenting plan and custody arrangement document",
+    "fields": [
+      "parent1_name",
+      "parent2_name",
+      "child_names",
+      "physical_custody_schedule",
+      "legal_custody",
+      "holiday_schedule",
+      "education_decisions",
+      "medical_decisions",
+      "child_support_amount"
+    ],
+    "popular": true
+  },
+  {
+    "id": "prenuptial",
+    "name": "Prenuptial Agreement",
+    "category": "personal",
+    "icon": "💍",
+    "searches": "28K/mo",
+    "description": "Pre-marriage agreement for asset protection",
+    "fields": [
+      "party1_name",
+      "party2_name",
+      "marriage_date",
+      "party1_assets",
+      "party2_assets",
+      "separate_property",
+      "marital_property",
+      "debt_responsibility",
+      "spousal_support"
+    ]
+  },
+  {
+    "id": "construction-contract",
+    "name": "Construction Contract",
+    "category": "construction",
+    "icon": "🏗️",
+    "searches": "40K/mo",
+    "description": "Agreement for construction and building projects",
+    "fields": [
+      "owner_name",
+      "contractor_name",
+      "project_address",
+      "project_description",
+      "start_date",
+      "completion_date",
+      "contract_price",
+      "payment_schedule",
+      "change_order_process",
+      "materials_responsibility",
+      "warranty_period"
+    ],
+    "popular": true
+  },
+  {
+    "id": "home-improvement",
+    "name": "Home Improvement Contract",
+    "category": "construction",
+    "icon": "🔨",
+    "searches": "30K/mo",
+    "description": "Agreement for home renovation and improvement work",
+    "fields": [
+      "homeowner_name",
+      "contractor_name",
+      "property_address",
+      "work_description",
+      "materials_list",
+      "start_date",
+      "completion_date",
+      "total_cost",
+      "deposit",
+      "final_payment"
+    ],
+    "popular": true
+  },
+  {
+    "id": "subcontractor",
+    "name": "Subcontractor Agreement",
+    "category": "construction",
+    "icon": "👷",
+    "searches": "25K/mo",
+    "description": "Agreement between contractor and subcontractor",
+    "fields": [
+      "contractor_name",
+      "subcontractor_name",
+      "project_name",
+      "scope_of_work",
+      "payment_amount",
+      "payment_schedule",
+      "completion_date",
+      "insurance_requirements"
+    ]
+  },
+  {
+    "id": "landscaping-contract",
+    "name": "Landscaping Contract",
+    "category": "construction",
+    "icon": "🌿",
+    "searches": "18K/mo",
+    "description": "Agreement for landscaping and lawn care services",
+    "fields": [
+      "client_name",
+      "company_name",
+      "property_address",
+      "services_provided",
+      "frequency",
+      "monthly_fee",
+      "contract_duration",
+      "cancellation_policy"
+    ]
+  },
+  {
+    "id": "event-planning",
+    "name": "Event Planning Contract",
+    "category": "events",
+    "icon": "🎉",
+    "searches": "22K/mo",
+    "description": "Agreement for event planning and coordination services",
+    "fields": [
+      "client_name",
+      "planner_name",
+      "event_type",
+      "event_date",
+      "event_venue",
+      "guest_count",
+      "services_included",
+      "total_fee",
+      "deposit",
+      "cancellation_policy"
+    ]
+  },
+  {
+    "id": "catering-contract",
+    "name": "Catering Contract",
+    "category": "events",
+    "icon": "🍽️",
+    "searches": "20K/mo",
+    "description": "Catering services agreement for events",
+    "fields": [
+      "client_name",
+      "caterer_name",
+      "event_date",
+      "event_location",
+      "guest_count",
+      "menu_description",
+      "price_per_head",
+      "total_cost",
+      "deposit",
+      "dietary_requirements"
+    ]
+  },
+  {
+    "id": "dj-contract",
+    "name": "DJ Contract",
+    "category": "events",
+    "icon": "🎵",
+    "searches": "18K/mo",
+    "description": "Agreement for DJ services at events",
+    "fields": [
+      "client_name",
+      "dj_name",
+      "event_date",
+      "venue",
+      "performance_hours",
+      "setup_time",
+      "total_fee",
+      "deposit",
+      "equipment_provided",
+      "song_requests_policy"
+    ]
+  },
+  {
+    "id": "wedding-contract",
+    "name": "Wedding Services Contract",
+    "category": "events",
+    "icon": "💒",
+    "searches": "25K/mo",
+    "description": "Comprehensive wedding services agreement",
+    "fields": [
+      "couple_names",
+      "vendor_name",
+      "service_type",
+      "wedding_date",
+      "venue",
+      "services_description",
+      "total_cost",
+      "deposit",
+      "cancellation_refund_policy"
+    ]
+  },
+  {
+    "id": "car-sale-contract",
+    "name": "Vehicle Sale Agreement",
+    "category": "vehicle",
+    "icon": "🚗",
+    "searches": "50K/mo",
+    "description": "Private party vehicle sale agreement",
+    "fields": [
+      "seller_name",
+      "buyer_name",
+      "vehicle_make",
+      "vehicle_model",
+      "vehicle_year",
+      "vin_number",
+      "mileage",
+      "sale_price",
+      "payment_method",
+      "sale_date",
+      "as_is_clause"
+    ],
+    "popular": true
+  },
+  {
+    "id": "car-rental",
+    "name": "Vehicle Rental Agreement",
+    "category": "vehicle",
+    "icon": "🚙",
+    "searches": "28K/mo",
+    "description": "Agreement for renting a vehicle between private parties",
+    "fields": [
+      "owner_name",
+      "renter_name",
+      "vehicle_details",
+      "rental_start",
+      "rental_end",
+      "daily_rate",
+      "deposit",
+      "mileage_limit",
+      "fuel_policy",
+      "insurance"
+    ]
+  }
+]
