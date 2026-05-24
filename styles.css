@@ -62,6 +62,7 @@ body {
   padding: 0;
   border-radius: 0;
   background: transparent;
+  filter: brightness(0) invert(1);
 }
 
 .sidebar .brand-logo {
