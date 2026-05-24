@@ -342,14 +342,9 @@ function updatePreview() {
   els.validationStatus.classList.toggle("ready", missing.length === 0);
 }
 
-function printContract() {
+async function printContract() {
   const template = selectedTemplate();
-  const originalTitle = document.title;
-  if (template) document.title = template.name;
-  window.print();
-  window.setTimeout(() => {
-    document.title = originalTitle;
-  }, 500);
+  await window.downloadContractPdf?.(els.contractPreview, template?.name || "contract");
 }
 
 function downloadText(filename, text, type = "text/plain") {

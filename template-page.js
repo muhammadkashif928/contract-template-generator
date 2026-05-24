@@ -73,14 +73,9 @@
     status.classList.toggle("ready", missing === 0);
   }
 
-  function printPdf() {
-    const originalTitle = document.title;
-    document.title = template.name;
+  async function printPdf() {
     updatePreview();
-    window.print();
-    window.setTimeout(() => {
-      document.title = originalTitle;
-    }, 500);
+    await window.downloadContractPdf?.(document.querySelector("#templatePreview"), template.name);
   }
 
   function updateDynamicSeo() {
