@@ -36,10 +36,10 @@
     const parties = partyFields.length ? partyFields.map((field) => `<tr><th>${escapeHtml(titleize(field))}</th><td>${escapeHtml(fieldValue(field))}</td></tr>`).join("") : `<tr><td colspan="2">The parties are identified by the completed fields in this agreement.</td></tr>`;
     const terms = template.fields.map((field, index) => `<tr><td>${index + 1}</td><th>${escapeHtml(titleize(field))}</th><td>${escapeHtml(fieldValue(field))}</td></tr>`).join("");
     return `<article class="contract-document">
-      <header class="contract-title">
+      <div class="contract-title">
         <h1>${escapeHtml(template.name)}</h1>
         <p>Professional Agreement Template</p>
-      </header>
+      </div>
       <section><h2>Important Notice</h2><p>This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, industry requirements, and the parties' specific facts before signature.</p></section>
       <section><h2>1. Parties</h2><table class="contract-table"><tbody>${parties}</tbody></table></section>
       <section><h2>2. Key Terms</h2><table class="contract-table key-terms"><thead><tr><th>No.</th><th>Term</th><th>Details</th></tr></thead><tbody>${terms}</tbody></table></section>

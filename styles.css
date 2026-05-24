@@ -1072,7 +1072,7 @@ button {
 
 .panel-header,
 .builder-header,
-.preview-wrap header,
+.preview-wrap > header,
 .actions {
   display: flex;
   align-items: center;
@@ -1859,7 +1859,7 @@ button {
   overflow: hidden;
 }
 
-.preview-wrap header {
+.preview-wrap > header {
   padding: 14px 16px;
   background: var(--soft);
 }
@@ -2216,7 +2216,7 @@ button {
   .builder-header,
   .field-form,
   .actions,
-  .preview-wrap header,
+  .preview-wrap > header,
   .site-footer,
   .legal-disclaimer-bar,
   .cookie-banner,

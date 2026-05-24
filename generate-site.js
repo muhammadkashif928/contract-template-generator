@@ -217,7 +217,7 @@ function topbar(depth = 0) {
 }
 
 function ad(id) {
-  return `<div class="ad-slot ad-leaderboard" id="${id}"><span>Advertisement</span></div>`;
+  return "";
 }
 
 function templateSchema(template) {
@@ -343,7 +343,6 @@ ${head({ title, description, canonical: url, depth: 2, schema: templateSchema(te
           <h2>Build Your Contract</h2>
           <form id="templateFieldForm" class="field-form"></form>
           <button id="downloadPdfBtn" class="download-pdf" type="button">Download PDF</button>
-          <div class="ad-slot ad-rectangle" id="ad-sidebar"><span>Advertisement</span></div>
         </div>
         <div class="tool-card tool-preview">
           <div class="preview-wrap">
@@ -352,9 +351,6 @@ ${head({ title, description, canonical: url, depth: 2, schema: templateSchema(te
           </div>
         </div>
       </section>
-
-      <!-- AdSense: template-page-mid 728x90 -->
-      <div class="ad-slot ad-leaderboard" id="ad-mid"><span>Advertisement</span></div>
 
       <section class="content-section">
         <h2>What is a ${esc(template.name)}?</h2>
@@ -390,8 +386,6 @@ ${head({ title, description, canonical: url, depth: 2, schema: templateSchema(te
         <div class="related-grid">${related.map((item) => `<a class="content-card" href="../${slugFor(item)}/"><span class="template-icon">${item.icon}</span><h3>${esc(item.name)}</h3><p>${esc(item.description)}</p></a>`).join("")}</div>
       </section>
 
-      <!-- AdSense: template-page-bottom 728x90 -->
-      <div class="ad-slot ad-leaderboard" id="ad-bottom"><span>Advertisement</span></div>
     </main>
     <div data-site-footer></div>
     <script src="../../templates.js"></script>
@@ -514,7 +508,6 @@ ${head({ title: `${post.title} | Contract Generator`, description: post.descript
       </article>
       <aside class="article-sidebar">
         <div class="toc-box"><h3>Table of Contents</h3>${toc}</div>
-        <div class="ad-slot ad-rectangle" id="ad-sidebar"><span>Advertisement</span></div>
         <div class="toc-box quick-tools"><h3>Quick Tools</h3>${TEMPLATES.slice(0, 5).map((item) => `<a href="../templates/${slugFor(item)}/">${esc(item.name)}</a>`).join("")}</div>
         <div class="newsletter"><h3>Contract tips</h3><p>Get practical legal template updates.</p><input type="email" placeholder="Email address" /><button class="content-button" type="button">Subscribe</button></div>
       </aside>

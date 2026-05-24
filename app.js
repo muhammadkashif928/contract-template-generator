@@ -264,10 +264,10 @@ function generateContract() {
   `).join("");
 
   return `<article class="contract-document">
-    <header class="contract-title">
+    <div class="contract-title">
       <h1>${escapeHtml(template.name)}</h1>
       <p>Professional Agreement Template</p>
-    </header>
+    </div>
 
     <section>
       <h2>Important Notice</h2>
