@@ -204,7 +204,7 @@ function head({ title, description, canonical, depth = 0, robots = "index, follo
 function topbar(depth = 0) {
   const prefix = rootPrefix(depth);
   return `<header class="site-topbar">
-      <a class="brand" href="${prefix}index.html"><span class="brand-mark">CT</span><div><h1>Contract Generator</h1><p>Free legal templates</p></div></a>
+      <a class="brand" href="${prefix}index.html"><img class="brand-logo" src="${prefix}contract_generator_logo_transparent.png" alt="Contract Generator" /></a>
       <nav class="top-nav" aria-label="Main navigation">
         <a href="${prefix}templates/">Templates</a>
         <a href="${prefix}blog/">Blog</a>

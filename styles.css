@@ -48,6 +48,35 @@ body {
   text-decoration: none;
 }
 
+.brand-logo {
+  display: block;
+  width: 220px;
+  max-width: 46vw;
+  height: auto;
+  object-fit: contain;
+}
+
+.home-brand .brand-logo,
+.sidebar .brand-logo,
+.footer-brand-row .brand-logo {
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.sidebar .brand-logo {
+  width: 230px;
+  max-width: 100%;
+}
+
+.site-topbar .brand-logo {
+  width: 210px;
+}
+
+.footer-brand-row .brand-logo {
+  width: 240px;
+}
+
 .home-brand strong,
 .home-brand small {
   display: block;

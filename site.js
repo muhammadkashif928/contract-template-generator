@@ -16,7 +16,7 @@
       <footer class="site-footer">
         <div class="footer-inner">
           <div class="footer-column">
-            <div class="footer-brand-row"><span class="brand-mark">CT</span><span>Contract Generator</span></div>
+            <div class="footer-brand-row"><img class="brand-logo" src="${base}contract_generator_logo_transparent.png" alt="Contract Generator" /></div>
             <p class="footer-tagline">Free professional contract templates. Download as PDF instantly.</p>
             <p class="footer-small">Not a law firm. Templates are for informational purposes only.</p>
           </div>
