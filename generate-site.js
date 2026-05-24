@@ -401,6 +401,7 @@ ${head({ title, description, canonical: url, depth: 2, schema: templateSchema(te
     <div data-site-footer></div>
     <script src="../../templates.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="../../contract-engine.js"></script>
     <script src="../../pdf-download.js"></script>
     <script src="../../template-page.js"></script>
     <script src="../../site.js"></script>

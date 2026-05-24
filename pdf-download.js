@@ -15,14 +15,23 @@
   }
 
   function contractSections(data) {
-    return [
+    if (data.pdfSections?.length) {
+      return [
+        ...data.pdfSections,
+        { heading: "Signatures", signatures: data.signatures || ["Party Signature", "Party Signature"] }
+      ];
+    }
+    const sections = [
       { heading: "Important Notice", paragraphs: [data.notice] },
       { heading: "1. Parties", rows: data.parties },
       { heading: "2. Background and Purpose", paragraphs: data.background },
-      { heading: "3. Key Terms", rows: data.keyTerms, numbered: true },
-      ...(data.sections || []),
-      { heading: "Signatures", signatures: data.signatures || ["Party Signature", "Party Signature"] }
+      ...(data.sections || [])
     ];
+    if (data.keyTerms?.length) {
+      sections.push({ heading: "Agreement Details", rows: data.keyTerms, numbered: true });
+    }
+    sections.push({ heading: "Signatures", signatures: data.signatures || ["Party Signature", "Party Signature"] });
+    return sections;
   }
 
   function createRenderer(doc, dryRun) {
@@ -154,15 +163,6 @@
     downloadContractPdfFromData(fallbackData, filename);
   }
 
-  function splitLabelValue(text) {
-    const parts = normalizeText(text).split(":");
-    if (parts.length < 2) return null;
-    return {
-      label: parts.shift().replace(/^\d+\.\s*/, "").trim(),
-      value: parts.join(":").trim()
-    };
-  }
-
   function downloadContractPdfFromElement(element, filename) {
     const article = element?.querySelector?.(".contract-document") || element;
     if (!article) {
@@ -179,6 +179,7 @@
       parties: [],
       background: [],
       keyTerms: [],
+      pdfSections: [],
       sections: [],
       signatures: ["Party Signature", "Party Signature"]
     };
@@ -186,18 +187,10 @@
     article.querySelectorAll("section").forEach((section) => {
       const heading = normalizeText(section.querySelector("h2")?.textContent || "");
       const paragraphs = Array.from(section.querySelectorAll("p")).map((node) => normalizeText(node.textContent)).filter(Boolean);
-      if (/important notice/i.test(heading)) {
-        data.notice = paragraphs.join(" ");
-      } else if (/parties/i.test(heading)) {
-        data.parties = paragraphs.map(splitLabelValue).filter(Boolean);
-      } else if (/background/i.test(heading)) {
-        data.background = paragraphs;
-      } else if (/key terms/i.test(heading)) {
-        data.keyTerms = paragraphs.map(splitLabelValue).filter(Boolean);
-      } else if (/signature/i.test(heading)) {
+      if (/signature/i.test(heading)) {
         data.signatures = Array.from(section.querySelectorAll(".signature-grid span")).map((node) => normalizeText(node.textContent)).filter(Boolean);
       } else if (heading) {
-        data.sections.push({ heading, paragraphs });
+        data.pdfSections.push({ heading, paragraphs });
       }
     });
 

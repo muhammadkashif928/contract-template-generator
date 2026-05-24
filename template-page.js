@@ -31,81 +31,8 @@
     return dateHints.some((hint) => field.includes(hint)) ? "date" : "text";
   }
 
-  function partyRows() {
-    return template.fields
-      .filter((field) => field.includes("name") || field.includes("address") || field.includes("company") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee") || field.includes("contractor") || field.includes("seller") || field.includes("buyer") || field.includes("owner") || field.includes("renter") || field.includes("vendor"))
-      .map((field) => ({
-        label: titleize(field),
-        value: fieldValue(field)
-      }));
-  }
-
-  function generateContractData() {
-    return {
-      title: template.name,
-      subtitle: "",
-      notice: "This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, industry requirements, and the parties' specific facts before signature.",
-      parties: partyRows(),
-      background: [
-        `The parties intend to use this ${template.name} to record the essential business, legal, financial, operational, and signature-ready terms for ${template.description.toLowerCase()}.`
-      ],
-      keyTerms: template.fields.map((field) => ({
-        label: titleize(field),
-        value: fieldValue(field)
-      })),
-      sections: [
-        {
-          heading: "4. Scope, Performance, and Cooperation",
-          paragraphs: [
-            "Each party will perform its responsibilities in good faith and within the timing, payment, ownership, confidentiality, approval, delivery, and cancellation terms stated in this agreement."
-          ]
-        },
-        {
-          heading: "5. Payment, Records, and Cooperation",
-          paragraphs: [
-            "Payment obligations, deposits, schedules, rates, reimbursements, and recordkeeping duties should be handled according to the completed terms. The parties will cooperate reasonably and provide information needed to perform the agreement."
-          ]
-        },
-        {
-          heading: "6. Confidentiality and Ownership",
-          paragraphs: [
-            "Confidential information should be protected and used only for the purpose of this agreement. Ownership, license, access, transfer, and usage rights are limited to the rights expressly stated in the completed terms."
-          ]
-        },
-        {
-          heading: "7. Changes and Termination",
-          paragraphs: [
-            "Changes to scope, price, deadlines, rights, obligations, cancellation terms, or termination rights should be documented in writing and accepted by the parties."
-          ]
-        }
-      ],
-      signatures: ["Party Signature", "Party Signature"]
-    };
-  }
-
   function generateContract() {
-    const data = generateContractData();
-    const parties = data.parties.length
-      ? data.parties.map((row) => `<p><strong>${escapeHtml(row.label)}:</strong> ${escapeHtml(row.value)}</p>`).join("")
-      : "<p>The parties are identified by the completed fields in this agreement.</p>";
-    const terms = data.keyTerms.map((row, index) => `<p><strong>${index + 1}. ${escapeHtml(row.label)}:</strong> ${escapeHtml(row.value)}</p>`).join("");
-    const sections = data.sections.map((section) => `
-      <section>
-        <h2>${escapeHtml(section.heading)}</h2>
-        ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
-      </section>
-    `).join("");
-    return `<article class="contract-document">
-      <div class="contract-title">
-        <h1>${escapeHtml(data.title)}</h1>
-      </div>
-      <section><h2>Important Notice</h2><p>${escapeHtml(data.notice)}</p></section>
-      <section><h2>1. Parties</h2><div class="contract-field-list">${parties}</div></section>
-      <section><h2>2. Background and Purpose</h2>${data.background.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
-      <section><h2>3. Key Terms</h2><div class="contract-term-list">${terms}</div></section>
-      ${sections}
-      <section><h2>Signatures</h2><div class="signature-grid"><div><span>Party Signature</span><strong>Date</strong></div><div><span>Party Signature</span><strong>Date</strong></div></div></section>
-    </article>`;
+    return window.ContractEngine.renderHtml(template, fieldValue);
   }
 
   function renderForm() {

@@ -169,6 +169,103 @@ function volume(config, index) {
   return `${Math.max(3, base - Math.floor(index / config.searches.length) * 2)}K/mo`;
 }
 
+function includesAny(text, terms) {
+  return terms.some((term) => text.includes(term));
+}
+
+function partyRolesForTemplate(category, name) {
+  const text = name.toLowerCase();
+  if (includesAny(text, ["non-disclosure", "nda", "confidential"])) return ["disclosing_party", "receiving_party"];
+  if (includesAny(text, ["license", "licence", "subscription", "saas"])) return ["licensor", "licensee"];
+  if (includesAny(text, ["assignment", "transfer", "work made for hire"])) return ["assignor", "assignee"];
+  if (includesAny(text, ["loan", "promissory", "iou", "debt", "payment plan"])) return ["lender", "borrower"];
+  if (includesAny(text, ["custody", "parenting", "child support"])) return ["parent_one", "parent_two"];
+  if (includesAny(text, ["prenuptial", "postnuptial", "separation"])) return ["spouse_one", "spouse_two"];
+  if (includesAny(text, ["roommate", "shared expense", "utilities sharing", "co-tenant"])) return ["roommate_one", "roommate_two"];
+  if (includesAny(text, ["lease", "rental", "rent", "tenant", "landlord", "housing", "apartment", "condo", "duplex", "storage", "parking", "garage"])) return ["landlord", "tenant"];
+  if (includesAny(text, ["sublease"])) return ["original_tenant", "subtenant"];
+  if (includesAny(text, ["property management"])) return ["property_owner", "property_manager"];
+  if (includesAny(text, ["sale", "purchase", "bill of sale", "buy-sell", "asset", "stock", "vehicle trade"])) return ["seller", "buyer"];
+  if (category === "vehicle" && includesAny(text, ["rental", "lease", "sharing"])) return ["vehicle_owner", "vehicle_renter"];
+  if (category === "vehicle" && includesAny(text, ["repair", "detailing", "mechanic", "towing", "wrap", "inspection", "storage"])) return ["vehicle_owner", "service_provider"];
+  if (category === "vehicle" && includesAny(text, ["loan", "payment"])) return ["lender", "borrower"];
+  if (category === "employment" && includesAny(text, ["independent contractor", "contractor", "consultant", "freelancer"])) return ["client", "contractor"];
+  if (category === "employment") return ["employer", "employee"];
+  if (category === "freelance") return ["client", "contractor"];
+  if (category === "construction" && includesAny(text, ["subcontractor"])) return ["contractor", "subcontractor"];
+  if (category === "construction") return ["owner", "contractor"];
+  if (category === "events") return ["client", "vendor"];
+  if (category === "ip") return ["owner", "recipient"];
+  if (category === "business" && includesAny(text, ["partnership", "joint venture", "collaboration", "alliance", "founder", "shareholder"])) return ["party_a", "party_b"];
+  if (category === "business" && includesAny(text, ["service", "vendor", "supplier", "agency", "consulting", "outsourcing", "support", "maintenance", "logistics", "transportation"])) return ["client", "service_provider"];
+  if (category === "business" && includesAny(text, ["distribution", "reseller", "supply", "manufacturing", "wholesale"])) return ["supplier", "buyer"];
+  if (category === "business") return ["company", "counterparty"];
+  return ["party_a", "party_b"];
+}
+
+function uniqueFields(fields) {
+  return [...new Set(fields.filter(Boolean))];
+}
+
+function fieldsForTemplate(category, name) {
+  const text = name.toLowerCase();
+  const [firstRole, secondRole] = partyRolesForTemplate(category, name);
+  const partyFields = [
+    `${firstRole}_name`,
+    `${firstRole}_address`,
+    `${secondRole}_name`,
+    `${secondRole}_address`,
+    "effective_date"
+  ];
+
+  if (includesAny(text, ["non-disclosure", "nda", "confidential"])) {
+    return uniqueFields([...partyFields, "confidential_information", "permitted_purpose", "excluded_information", "confidentiality_period", "return_or_destroy_materials", "injunctive_relief", "governing_state"]);
+  }
+
+  if (includesAny(text, ["loan", "promissory", "iou", "debt repayment", "debt settlement", "payment plan"])) {
+    const vehicleFields = text.includes("vehicle") ? ["vehicle_make", "vehicle_model", "vehicle_year", "vin_number", "mileage", "condition_disclosure"] : [];
+    return uniqueFields([...partyFields, ...vehicleFields, "loan_amount", "interest_rate", "repayment_start", "maturity_date", "payment_terms", "collateral", "late_fee", "default_terms", "governing_state"]);
+  }
+
+  if (category === "freelance") {
+    return uniqueFields([...partyFields, "project_name", "services_description", "scope_of_work", "deliverables", "start_date", "completion_date", "service_fee", "payment_schedule", "revision_policy", "client_approval_process", "intellectual_property_ownership", "confidentiality_obligations", "termination_notice", "governing_state"]);
+  }
+
+  if (category === "employment") {
+    return uniqueFields([...partyFields, "job_title", "department", "manager_name", "work_location", "start_date", "compensation", "pay_frequency", "working_hours", "benefits", "probation_period", "confidentiality_obligations", "intellectual_property_obligations", "notice_period", "governing_state"]);
+  }
+
+  if (category === "rental") {
+    return uniqueFields([...partyFields, "property_address", "premises_description", "lease_start", "lease_end", "monthly_rent", "security_deposit", "late_fee", "utilities_responsibility", "maintenance_responsibility", "pet_policy", "rules_and_regulations", "notice_period", "governing_state"]);
+  }
+
+  if (category === "business") {
+    return uniqueFields([...partyFields, "agreement_purpose", "products_or_services", "commercial_terms", "pricing", "payment_terms", "delivery_timeline", "performance_standards", "confidentiality_obligations", "intellectual_property_rights", "warranties", "liability_limit", "termination_rights", "governing_law"]);
+  }
+
+  if (category === "ip") {
+    return uniqueFields([...partyFields, "intellectual_property_description", "grant_or_transfer_scope", "permitted_uses", "territory", "term", "consideration", "royalty_rate", "ownership_reservation", "restrictions", "confidentiality_obligations", "termination_rights", "governing_law"]);
+  }
+
+  if (category === "personal") {
+    return uniqueFields([...partyFields, "agreement_purpose", "amount_or_property", "payment_terms", "responsibilities", "schedule", "default_terms", "notice_period", "governing_state"]);
+  }
+
+  if (category === "construction") {
+    return uniqueFields([...partyFields, "project_address", "project_description", "scope_of_work", "materials_responsibility", "start_date", "completion_date", "contract_price", "payment_schedule", "change_order_process", "permits_responsibility", "insurance_requirements", "warranty_period", "termination_terms", "governing_state"]);
+  }
+
+  if (category === "events") {
+    return uniqueFields([...partyFields, "event_type", "event_date", "event_location", "guest_count", "services_description", "setup_time", "performance_hours", "total_fee", "deposit", "payment_schedule", "cancellation_policy", "force_majeure", "insurance_requirements", "governing_state"]);
+  }
+
+  if (category === "vehicle") {
+    return uniqueFields([...partyFields, "vehicle_make", "vehicle_model", "vehicle_year", "vin_number", "mileage", "transaction_price", "payment_method", "transfer_date", "condition_disclosure", "odometer_statement", "insurance_responsibility", "as_is_terms", "governing_state"]);
+  }
+
+  return uniqueFields([...partyFields, "agreement_purpose", "payment_terms", "responsibilities", "termination_rights", "governing_state"]);
+}
+
 const templates = [];
 const ids = new Set();
 
@@ -197,7 +294,7 @@ for (const [category, config] of Object.entries(categoryConfig)) {
       icon: icon || config.icon,
       searches: volume(config, index),
       description: config.description(name),
-      fields: [...config.fields],
+      fields: fieldsForTemplate(category, name),
       popular: Boolean(popular || index < 5),
       featured: Boolean(featured),
       premium: isPremium,
