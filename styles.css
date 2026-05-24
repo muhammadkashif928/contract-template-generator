@@ -1922,7 +1922,6 @@ button {
 
 .contract-document section {
   margin: 22px 0;
-  break-inside: avoid;
 }
 
 .contract-document h2 {
@@ -2190,6 +2189,7 @@ button {
 
 @media print {
   @page {
+    size: 8.5in 200in;
     margin: 0.65in;
   }
 
