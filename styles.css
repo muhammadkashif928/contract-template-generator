@@ -904,7 +904,11 @@ body {
   margin-top: 18px;
 }
 
-.quick-start button {
+.quick-start button,
+.quick-start a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 38px;
   padding: 0 12px;
   border: 1px solid var(--line);
@@ -912,6 +916,7 @@ body {
   background: #fff;
   color: var(--ink);
   font-weight: 800;
+  text-decoration: none;
 }
 
 button,
@@ -1116,6 +1121,8 @@ button {
   gap: 10px;
   min-height: 190px;
   padding: 16px;
+  color: inherit;
+  text-decoration: none;
   text-align: left;
   border: 1px solid var(--line);
   border-radius: 8px;

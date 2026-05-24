@@ -6,6 +6,17 @@
   const heroSearch = document.getElementById("hero-search");
   const heroSearchForm = document.getElementById("hero-search-form");
   const backHomeBtn = document.getElementById("backHomeBtn");
+  const templateSlugOverrides = {
+    "partnership-agreement": "business-partnership",
+    "llc-operating": "llc-operating-agreement",
+    "loan-agreement": "personal-loan-agreement",
+    "car-sale-contract": "vehicle-sale-agreement"
+  };
+
+  function openTemplatePage(templateId) {
+    const slug = templateSlugOverrides[templateId] || templateId;
+    window.location.href = `templates/${slug}/`;
+  }
 
   function closeMenu() {
     mobileMenu?.classList.remove("open");
@@ -75,7 +86,7 @@
   });
 
   document.querySelectorAll(".featured-template-card, .quick-start [data-template-id]").forEach((card) => {
-    card.addEventListener("click", () => showDashboard(null, card.dataset.templateId));
+    card.addEventListener("click", () => openTemplatePage(card.dataset.templateId));
   });
 
   document.querySelectorAll(".home-category-card").forEach((card) => {
@@ -84,7 +95,11 @@
 
   document.querySelectorAll(".search-pill").forEach((pill) => {
     pill.addEventListener("click", () => {
-      showDashboard(pill.dataset.category || null, pill.dataset.templateId || null);
+      if (pill.dataset.templateId) {
+        openTemplatePage(pill.dataset.templateId);
+        return;
+      }
+      showDashboard(pill.dataset.category || null);
     });
   });
 
@@ -121,7 +136,7 @@
 
   if (window.location.hash === "#dashboard") showDashboard();
   if (window.location.hash.includes("#template=")) {
-    showDashboard(null, window.location.hash.split("=")[1]);
+    openTemplatePage(window.location.hash.split("=")[1]);
   }
 
   initReveal();

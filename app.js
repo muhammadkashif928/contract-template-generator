@@ -31,6 +31,12 @@ const els = {
 const multilineHints = ["description", "scope", "deliverables", "policy", "rights", "terms", "clause", "responsibilities", "objectives", "schedule", "warranties", "rules", "requirements", "restrictions", "duties", "assets", "property", "services"];
 const dateHints = ["date", "start", "end", "deadline", "last_day", "repayment_start", "payment_due_date"];
 const moneyHints = ["amount", "cost", "fee", "salary", "rate", "rent", "deposit", "price", "payment", "stipend", "consideration", "collateral"];
+const templateSlugOverrides = {
+  "partnership-agreement": "business-partnership",
+  "llc-operating": "llc-operating-agreement",
+  "loan-agreement": "personal-loan-agreement",
+  "car-sale-contract": "vehicle-sale-agreement"
+};
 
 function titleize(value) {
   return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
@@ -47,6 +53,10 @@ function escapeHtml(value) {
 
 function selectedTemplate() {
   return TEMPLATES.find((template) => template.id === state.selectedId) || null;
+}
+
+function templateSlug(template) {
+  return templateSlugOverrides[template.id] || template.id;
 }
 
 function categoryCounts() {
@@ -104,7 +114,7 @@ function renderTemplates() {
   }
 
   els.templateGrid.innerHTML = templates.map((template) => `
-    <button class="template-card ${state.selectedId === template.id ? "active" : ""}" type="button" data-template-id="${template.id}">
+    <a class="template-card ${state.selectedId === template.id ? "active" : ""}" href="templates/${templateSlug(template)}/" data-template-id="${template.id}">
       <div class="card-top">
         <span class="template-icon">${escapeHtml(template.icon)}</span>
         <span class="badge">${escapeHtml(template.searches)}</span>
@@ -119,9 +129,9 @@ function renderTemplates() {
       <p>${escapeHtml(template.description)}</p>
       <footer>
         <span>${template.fields.length} fields</span>
-        <span>Select</span>
+        <span>Open Page →</span>
       </footer>
-    </button>
+    </a>
   `).join("");
 }
 
@@ -329,14 +339,6 @@ function init() {
     state.category = button.dataset.category;
     renderCategories();
     renderTemplates();
-  });
-
-  els.templateGrid.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-template-id]");
-    if (!button) return;
-    state.selectedId = button.dataset.templateId;
-    renderTemplates();
-    renderBuilder();
   });
 
   els.searchInput.addEventListener("input", (event) => {
