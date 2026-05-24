@@ -205,7 +205,15 @@ function head({ title, description, canonical, depth = 0, robots = "index, follo
 
 function topbar(depth = 0) {
   const prefix = rootPrefix(depth);
-  return `<header class="site-topbar">
+  return `<div id="site-loader" class="site-loader" aria-label="Loading Contract Generator">
+      <div class="loader-card">
+        <img class="loader-logo" src="${prefix}favicon.io.png" alt="" aria-hidden="true" />
+        <strong>Contract Generator</strong>
+        <span>Preparing templates</span>
+        <div class="loader-bar"><i></i></div>
+      </div>
+    </div>
+    <header class="site-topbar">
       <a class="brand" href="${prefix}index.html">
         <img class="brand-icon" src="${prefix}favicon.io.png" alt="" aria-hidden="true" />
         <span class="brand-copy"><strong>Contract Generator</strong><small>Free Legal Templates</small></span>
