@@ -1419,6 +1419,23 @@ button {
   font-weight: 800;
 }
 
+.footer-legal-links {
+  gap: 14px;
+}
+
+.footer-legal-links a {
+  width: auto;
+  height: auto;
+  color: rgba(255, 255, 255, 0.72);
+  border: 0;
+  border-radius: 0;
+  font-size: 13px;
+}
+
+.footer-legal-links a:hover {
+  color: #fff;
+}
+
 .cookie-banner {
   position: fixed;
   right: 0;
