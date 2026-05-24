@@ -2048,34 +2048,70 @@ button {
 }
 
 @media print {
+  @page {
+    margin: 0.65in;
+  }
+
   body {
+    margin: 0;
     background: #fff;
   }
 
+  body * {
+    visibility: hidden !important;
+  }
+
+  #contractPreview,
+  #contractPreview *,
+  #templatePreview,
+  #templatePreview * {
+    visibility: visible !important;
+  }
+
+  .home-nav,
+  .mobile-menu,
   .sidebar,
   .template-panel,
   .builder-header,
   .field-form,
   .actions,
-  .preview-wrap header {
-    display: none;
+  .preview-wrap header,
+  .site-footer,
+  .legal-disclaimer-bar,
+  .cookie-banner,
+  .ad-slot,
+  .dashboard-help,
+  .back-home,
+  [data-site-footer] {
+    display: none !important;
   }
 
-  .app-shell,
-  .workspace {
-    display: block;
-  }
-
-  .builder-panel {
+  #contractPreview,
+  #templatePreview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 0;
+    max-height: none;
     padding: 0;
+    overflow: visible;
+    color: #111827;
+    background: #fff;
+    white-space: pre-wrap;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11.5pt;
+    line-height: 1.55;
     border: 0;
     box-shadow: none;
   }
 
-  #contractPreview {
-    max-height: none;
-    padding: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 12pt;
+  .builder-panel,
+  .tool-card,
+  .preview-wrap {
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
   }
 }
