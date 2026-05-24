@@ -218,18 +218,18 @@ function updatePageSeo(template) {
 
 function fieldValue(field) {
   const template = selectedTemplate();
-  return state.values[template.id]?.[field]?.trim() || `[${titleize(field)}]`;
+  return state.values[template.id]?.[field]?.trim() || "";
 }
 
 function partiesLine(template) {
   const partyFields = template.fields.filter((field) => field.includes("name") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee"));
-  const values = partyFields.slice(0, 4).map((field) => `${titleize(field)}: ${fieldValue(field)}`);
+  const values = partyFields.map((field) => `${titleize(field)}: ${fieldValue(field)}`);
   return values.length ? values.join("\n") : "The parties are identified by the completed fields below.";
 }
 
 function partyRows(template) {
-  const partyFields = template.fields.filter((field) => field.includes("name") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee"));
-  return partyFields.slice(0, 4).map((field) => ({
+  const partyFields = template.fields.filter((field) => field.includes("name") || field.includes("address") || field.includes("company") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee") || field.includes("contractor") || field.includes("seller") || field.includes("buyer") || field.includes("owner") || field.includes("renter") || field.includes("vendor"));
+  return partyFields.map((field) => ({
     label: titleize(field),
     value: fieldValue(field)
   }));
@@ -368,14 +368,22 @@ function missingFields() {
 function updatePreview() {
   const missing = missingFields();
   els.contractPreview.innerHTML = generateContract();
+  els.contractPreview.setAttribute("contenteditable", "true");
+  els.contractPreview.setAttribute("aria-label", "Editable contract preview");
   els.validationStatus.textContent = missing.length ? `${missing.length} field${missing.length === 1 ? "" : "s"} missing` : "Ready to export";
   els.validationStatus.classList.toggle("ready", missing.length === 0);
 }
 
 async function printContract() {
   const template = selectedTemplate();
-  updatePreview();
-  await window.downloadContractPdfFromData?.(generateContractData(), template?.name || "contract");
+  const missing = missingFields();
+  if (missing.length) {
+    els.fieldForm?.reportValidity?.();
+    els.validationStatus.textContent = `Complete all ${missing.length} required field${missing.length === 1 ? "" : "s"} before downloading`;
+    els.validationStatus.classList.remove("ready");
+    return;
+  }
+  await window.downloadContractPdfFromElement?.(els.contractPreview, template?.name || "contract");
 }
 
 function downloadText(filename, text, type = "text/plain") {

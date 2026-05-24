@@ -15,7 +15,7 @@
   }
 
   function fieldValue(field) {
-    return values[field]?.trim() || `[${titleize(field)}]`;
+    return values[field]?.trim() || "";
   }
 
   function escapeHtml(value) {
@@ -33,8 +33,7 @@
 
   function partyRows() {
     return template.fields
-      .filter((field) => field.includes("name") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee"))
-      .slice(0, 4)
+      .filter((field) => field.includes("name") || field.includes("address") || field.includes("company") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee") || field.includes("contractor") || field.includes("seller") || field.includes("buyer") || field.includes("owner") || field.includes("renter") || field.includes("vendor"))
       .map((field) => ({
         label: titleize(field),
         value: fieldValue(field)
@@ -128,13 +127,24 @@
     if (!preview || !status) return;
     const missing = template.fields.filter((field) => !values[field]?.trim()).length;
     preview.innerHTML = generateContract();
+    preview.setAttribute("contenteditable", "true");
+    preview.setAttribute("aria-label", "Editable contract preview");
     status.textContent = missing ? `${missing} fields remaining` : "Ready to download";
     status.classList.toggle("ready", missing === 0);
   }
 
   async function printPdf() {
-    updatePreview();
-    await window.downloadContractPdfFromData?.(generateContractData(), template.name);
+    const missing = template.fields.filter((field) => !values[field]?.trim()).length;
+    if (missing) {
+      document.querySelector("#templateFieldForm")?.reportValidity?.();
+      const status = document.querySelector("#templateStatus");
+      if (status) {
+        status.textContent = `Complete all ${missing} required field${missing === 1 ? "" : "s"} before downloading`;
+        status.classList.remove("ready");
+      }
+      return;
+    }
+    await window.downloadContractPdfFromElement?.(document.querySelector("#templatePreview"), template.name);
   }
 
   function updateDynamicSeo() {

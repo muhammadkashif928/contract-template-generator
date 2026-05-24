@@ -148,6 +148,57 @@
     downloadContractPdfFromData(fallbackData, filename);
   }
 
+  function splitLabelValue(text) {
+    const parts = normalizeText(text).split(":");
+    if (parts.length < 2) return null;
+    return {
+      label: parts.shift().replace(/^\d+\.\s*/, "").trim(),
+      value: parts.join(":").trim()
+    };
+  }
+
+  function downloadContractPdfFromElement(element, filename) {
+    const article = element?.querySelector?.(".contract-document") || element;
+    if (!article) {
+      downloadContractPdf(null, filename);
+      return;
+    }
+
+    const title = article.querySelector(".contract-title h1")?.textContent || filename || "Contract Agreement";
+    const subtitle = article.querySelector(".contract-title p")?.textContent || "Professional Agreement Template";
+    const data = {
+      title,
+      subtitle,
+      notice: "",
+      parties: [],
+      background: [],
+      keyTerms: [],
+      sections: [],
+      signatures: ["Party Signature", "Party Signature"]
+    };
+
+    article.querySelectorAll("section").forEach((section) => {
+      const heading = normalizeText(section.querySelector("h2")?.textContent || "");
+      const paragraphs = Array.from(section.querySelectorAll("p")).map((node) => normalizeText(node.textContent)).filter(Boolean);
+      if (/important notice/i.test(heading)) {
+        data.notice = paragraphs.join(" ");
+      } else if (/parties/i.test(heading)) {
+        data.parties = paragraphs.map(splitLabelValue).filter(Boolean);
+      } else if (/background/i.test(heading)) {
+        data.background = paragraphs;
+      } else if (/key terms/i.test(heading)) {
+        data.keyTerms = paragraphs.map(splitLabelValue).filter(Boolean);
+      } else if (/signature/i.test(heading)) {
+        data.signatures = Array.from(section.querySelectorAll(".signature-grid span")).map((node) => normalizeText(node.textContent)).filter(Boolean);
+      } else if (heading) {
+        data.sections.push({ heading, paragraphs });
+      }
+    });
+
+    downloadContractPdfFromData(data, filename || title);
+  }
+
   window.downloadContractPdfFromData = downloadContractPdfFromData;
+  window.downloadContractPdfFromElement = downloadContractPdfFromElement;
   window.downloadContractPdf = downloadContractPdf;
 })();
