@@ -31,23 +31,82 @@
     return dateHints.some((hint) => field.includes(hint)) ? "date" : "text";
   }
 
+  function partyRows() {
+    return template.fields
+      .filter((field) => field.includes("name") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee"))
+      .slice(0, 4)
+      .map((field) => ({
+        label: titleize(field),
+        value: fieldValue(field)
+      }));
+  }
+
+  function generateContractData() {
+    return {
+      title: template.name,
+      subtitle: "Professional Agreement Template",
+      notice: "This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, industry requirements, and the parties' specific facts before signature.",
+      parties: partyRows(),
+      background: [
+        `The parties intend to use this ${template.name} to record the essential business, legal, financial, operational, and signature-ready terms for ${template.description.toLowerCase()}.`
+      ],
+      keyTerms: template.fields.map((field) => ({
+        label: titleize(field),
+        value: fieldValue(field)
+      })),
+      sections: [
+        {
+          heading: "4. Scope, Performance, and Cooperation",
+          paragraphs: [
+            "Each party will perform its responsibilities in good faith and within the timing, payment, ownership, confidentiality, approval, delivery, and cancellation terms stated in this agreement."
+          ]
+        },
+        {
+          heading: "5. Payment, Records, and Cooperation",
+          paragraphs: [
+            "Payment obligations, deposits, schedules, rates, reimbursements, and recordkeeping duties should be handled according to the completed terms. The parties will cooperate reasonably and provide information needed to perform the agreement."
+          ]
+        },
+        {
+          heading: "6. Confidentiality and Ownership",
+          paragraphs: [
+            "Confidential information should be protected and used only for the purpose of this agreement. Ownership, license, access, transfer, and usage rights are limited to the rights expressly stated in the completed terms."
+          ]
+        },
+        {
+          heading: "7. Changes and Termination",
+          paragraphs: [
+            "Changes to scope, price, deadlines, rights, obligations, cancellation terms, or termination rights should be documented in writing and accepted by the parties."
+          ]
+        }
+      ],
+      signatures: ["Party Signature", "Party Signature"]
+    };
+  }
+
   function generateContract() {
-    const partyFields = template.fields.filter((field) => field.includes("name") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee")).slice(0, 4);
-    const parties = partyFields.length ? partyFields.map((field) => `<tr><th>${escapeHtml(titleize(field))}</th><td>${escapeHtml(fieldValue(field))}</td></tr>`).join("") : `<tr><td colspan="2">The parties are identified by the completed fields in this agreement.</td></tr>`;
-    const terms = template.fields.map((field, index) => `<tr><td>${index + 1}</td><th>${escapeHtml(titleize(field))}</th><td>${escapeHtml(fieldValue(field))}</td></tr>`).join("");
+    const data = generateContractData();
+    const parties = data.parties.length
+      ? data.parties.map((row) => `<p><strong>${escapeHtml(row.label)}:</strong> ${escapeHtml(row.value)}</p>`).join("")
+      : "<p>The parties are identified by the completed fields in this agreement.</p>";
+    const terms = data.keyTerms.map((row, index) => `<p><strong>${index + 1}. ${escapeHtml(row.label)}:</strong> ${escapeHtml(row.value)}</p>`).join("");
+    const sections = data.sections.map((section) => `
+      <section>
+        <h2>${escapeHtml(section.heading)}</h2>
+        ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      </section>
+    `).join("");
     return `<article class="contract-document">
       <div class="contract-title">
-        <h1>${escapeHtml(template.name)}</h1>
-        <p>Professional Agreement Template</p>
+        <h1>${escapeHtml(data.title)}</h1>
+        <p>${escapeHtml(data.subtitle)}</p>
       </div>
-      <section><h2>Important Notice</h2><p>This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, industry requirements, and the parties' specific facts before signature.</p></section>
-      <section><h2>1. Parties</h2><table class="contract-table"><tbody>${parties}</tbody></table></section>
-      <section><h2>2. Key Terms</h2><table class="contract-table key-terms"><thead><tr><th>No.</th><th>Term</th><th>Details</th></tr></thead><tbody>${terms}</tbody></table></section>
-      <section><h2>3. Scope and Performance</h2><p>Each party will perform its responsibilities in good faith and within the timing, payment, ownership, confidentiality, approval, delivery, and cancellation terms stated above.</p></section>
-      <section><h2>4. Payment, Records, and Cooperation</h2><p>Payment obligations, deposits, schedules, rates, reimbursements, and recordkeeping duties should be handled according to the completed terms. The parties will cooperate reasonably and provide information needed to perform the agreement.</p></section>
-      <section><h2>5. Confidentiality and Ownership</h2><p>Confidential information should be protected and used only for the purpose of this agreement. Ownership, license, access, transfer, and usage rights are limited to the rights expressly stated in the completed terms.</p></section>
-      <section><h2>6. Changes and Termination</h2><p>Changes to scope, price, deadlines, rights, obligations, cancellation terms, or termination rights should be documented in writing and accepted by the parties.</p></section>
-      <section><h2>7. Signatures</h2><div class="signature-grid"><div><span>Party Signature</span><strong>Date</strong></div><div><span>Party Signature</span><strong>Date</strong></div></div></section>
+      <section><h2>Important Notice</h2><p>${escapeHtml(data.notice)}</p></section>
+      <section><h2>1. Parties</h2><div class="contract-field-list">${parties}</div></section>
+      <section><h2>2. Background and Purpose</h2>${data.background.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</section>
+      <section><h2>3. Key Terms</h2><div class="contract-term-list">${terms}</div></section>
+      ${sections}
+      <section><h2>Signatures</h2><div class="signature-grid"><div><span>Party Signature</span><strong>Date</strong></div><div><span>Party Signature</span><strong>Date</strong></div></div></section>
     </article>`;
   }
 
@@ -75,7 +134,7 @@
 
   async function printPdf() {
     updatePreview();
-    await window.downloadContractPdf?.(document.querySelector("#templatePreview"), template.name);
+    await window.downloadContractPdfFromData?.(generateContractData(), template.name);
   }
 
   function updateDynamicSeo() {

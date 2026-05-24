@@ -227,15 +227,12 @@ function partiesLine(template) {
   return values.length ? values.join("\n") : "The parties are identified by the completed fields below.";
 }
 
-function partiesHtml(template) {
+function partyRows(template) {
   const partyFields = template.fields.filter((field) => field.includes("name") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee"));
-  const rows = partyFields.slice(0, 4).map((field) => `
-    <tr>
-      <th>${escapeHtml(titleize(field))}</th>
-      <td>${escapeHtml(fieldValue(field))}</td>
-    </tr>
-  `).join("");
-  return rows || `<tr><td colspan="2">The parties are identified by the completed fields in this agreement.</td></tr>`;
+  return partyFields.slice(0, 4).map((field) => ({
+    label: titleize(field),
+    value: fieldValue(field)
+  }));
 }
 
 function categoryClauses(template) {
@@ -253,74 +250,107 @@ function categoryClauses(template) {
   return clauses[template.category] || "The parties agree to the terms described below.";
 }
 
+function agreementSections(template) {
+  return [
+    {
+      heading: "4. Scope, Performance, and Cooperation",
+      paragraphs: [
+        categoryClauses(template),
+        "Each party will cooperate in good faith, provide information reasonably required to complete the arrangement, and perform its obligations in a timely, professional, and commercially reasonable manner."
+      ]
+    },
+    {
+      heading: "5. Payment, Fees, and Timing",
+      paragraphs: [
+        "Any payment, fee, deposit, rent, salary, rate, schedule, milestone, deadline, start date, end date, or delivery date listed in the Key Terms section is incorporated into this agreement. Unless otherwise stated, payments should be made in cleared funds by the due date and disputed amounts should be raised promptly in writing."
+      ]
+    },
+    {
+      heading: "6. Confidentiality, Records, and Ownership",
+      paragraphs: [
+        "The parties will protect confidential information received under this agreement and use it only for the agreed purpose. Ownership, license, access, usage, transfer, and recordkeeping terms are limited to the rights expressly stated in this document or any written amendment."
+      ]
+    },
+    {
+      heading: "7. Changes, Cancellation, and Termination",
+      paragraphs: [
+        "Any material change to scope, price, timing, rights, responsibilities, cancellation terms, or termination rights should be made in writing and accepted by all required parties. Termination does not affect payment obligations, confidentiality duties, accrued rights, or provisions intended to survive."
+      ]
+    },
+    {
+      heading: "8. Representations and Compliance",
+      paragraphs: [
+        "Each party represents that it has authority to enter into this agreement and will comply with applicable laws, permits, policies, and professional standards. Any warranties, limitations of liability, indemnities, dispute terms, or governing law requirements should be reviewed before signing."
+      ]
+    }
+  ];
+}
+
+function generateContractData() {
+  const template = selectedTemplate();
+  if (!template) return null;
+  return {
+    title: template.name,
+    subtitle: "Professional Agreement Template",
+    notice: "This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, regulatory requirements, and the parties' specific circumstances before signature.",
+    parties: partyRows(template),
+    background: [
+      `The parties intend to enter into this ${template.name} to document their respective rights, duties, commercial expectations, approval requirements, payment obligations, risk allocation, and signature-ready terms. This agreement concerns ${template.description.toLowerCase()}`
+    ],
+    keyTerms: template.fields.map((field) => ({
+      label: titleize(field),
+      value: fieldValue(field)
+    })),
+    sections: agreementSections(template),
+    signatures: ["Party Signature", "Party Signature"]
+  };
+}
+
 function generateContract() {
   const template = selectedTemplate();
   if (!template) return "";
-  const terms = template.fields.map((field, index) => `
-    <tr>
-      <td>${index + 1}</td>
-      <th>${escapeHtml(titleize(field))}</th>
-      <td>${escapeHtml(fieldValue(field))}</td>
-    </tr>
+  const data = generateContractData();
+  const parties = data.parties.length
+    ? data.parties.map((row) => `<p><strong>${escapeHtml(row.label)}:</strong> ${escapeHtml(row.value)}</p>`).join("")
+    : "<p>The parties are identified by the completed fields in this agreement.</p>";
+  const terms = data.keyTerms.map((row, index) => `<p><strong>${index + 1}. ${escapeHtml(row.label)}:</strong> ${escapeHtml(row.value)}</p>`).join("");
+  const sections = data.sections.map((section) => `
+    <section>
+      <h2>${escapeHtml(section.heading)}</h2>
+      ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+    </section>
   `).join("");
 
   return `<article class="contract-document">
     <div class="contract-title">
-      <h1>${escapeHtml(template.name)}</h1>
-      <p>Professional Agreement Template</p>
+      <h1>${escapeHtml(data.title)}</h1>
+      <p>${escapeHtml(data.subtitle)}</p>
     </div>
 
     <section>
       <h2>Important Notice</h2>
-      <p>This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, regulatory requirements, and the parties' specific circumstances before signature.</p>
+      <p>${escapeHtml(data.notice)}</p>
     </section>
 
     <section>
       <h2>1. Parties</h2>
-      <table class="contract-table"><tbody>${partiesHtml(template)}</tbody></table>
+      <div class="contract-field-list">${parties}</div>
     </section>
 
     <section>
       <h2>2. Background and Purpose</h2>
-      <p>The parties intend to enter into this <strong>${escapeHtml(template.name)}</strong> to document their respective rights, duties, commercial expectations, approval requirements, payment obligations, risk allocation, and signature-ready terms. This agreement concerns ${escapeHtml(template.description.toLowerCase())}</p>
+      ${data.background.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
     </section>
 
     <section>
       <h2>3. Key Terms</h2>
-      <table class="contract-table key-terms">
-        <thead><tr><th>No.</th><th>Term</th><th>Details</th></tr></thead>
-        <tbody>${terms}</tbody>
-      </table>
+      <div class="contract-term-list">${terms}</div>
     </section>
 
-    <section>
-      <h2>4. Scope, Performance, and Cooperation</h2>
-      <p>${escapeHtml(categoryClauses(template))}</p>
-      <p>Each party will cooperate in good faith, provide information reasonably required to complete the arrangement, and perform its obligations in a timely, professional, and commercially reasonable manner.</p>
-    </section>
+    ${sections}
 
     <section>
-      <h2>5. Payment, Fees, and Timing</h2>
-      <p>Any payment, fee, deposit, rent, salary, rate, schedule, milestone, deadline, start date, end date, or delivery date listed in the Key Terms section is incorporated into this agreement. Unless otherwise stated, payments should be made in cleared funds by the due date and disputed amounts should be raised promptly in writing.</p>
-    </section>
-
-    <section>
-      <h2>6. Confidentiality, Records, and Ownership</h2>
-      <p>The parties will protect confidential information received under this agreement and use it only for the agreed purpose. Ownership, license, access, usage, transfer, and recordkeeping terms are limited to the rights expressly stated in this document or any written amendment.</p>
-    </section>
-
-    <section>
-      <h2>7. Changes, Cancellation, and Termination</h2>
-      <p>Any material change to scope, price, timing, rights, responsibilities, cancellation terms, or termination rights should be made in writing and accepted by all required parties. Termination does not affect payment obligations, confidentiality duties, accrued rights, or provisions intended to survive.</p>
-    </section>
-
-    <section>
-      <h2>8. Representations and Compliance</h2>
-      <p>Each party represents that it has authority to enter into this agreement and will comply with applicable laws, permits, policies, and professional standards. Any warranties, limitations of liability, indemnities, dispute terms, or governing law requirements should be reviewed before signing.</p>
-    </section>
-
-    <section>
-      <h2>9. Signatures</h2>
+      <h2>Signatures</h2>
       <div class="signature-grid">
         <div><span>Party Signature</span><strong>Date</strong></div>
         <div><span>Party Signature</span><strong>Date</strong></div>
@@ -344,7 +374,8 @@ function updatePreview() {
 
 async function printContract() {
   const template = selectedTemplate();
-  await window.downloadContractPdf?.(els.contractPreview, template?.name || "contract");
+  updatePreview();
+  await window.downloadContractPdfFromData?.(generateContractData(), template?.name || "contract");
 }
 
 function downloadText(filename, text, type = "text/plain") {

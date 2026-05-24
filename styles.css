@@ -1971,32 +1971,27 @@ button {
   line-height: 1.65;
 }
 
-.contract-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  font-size: 12.5px;
+.contract-field-list,
+.contract-term-list {
+  display: grid;
+  gap: 5px;
+  margin-top: 8px;
 }
 
-.contract-table th,
-.contract-table td {
-  padding: 8px 10px;
-  vertical-align: top;
-  text-align: left;
-  border: 1px solid #d1d5db;
+.contract-field-list p,
+.contract-term-list p {
+  margin: 0 0 4px;
 }
 
-.contract-table th {
-  width: 34%;
+.contract-field-list strong,
+.contract-term-list strong {
   color: #111827;
-  background: #f3f4f6;
   font-weight: 700;
 }
 
-.key-terms td:first-child,
-.key-terms th:first-child {
-  width: 48px;
-  text-align: center;
+.contract-term-list p {
+  padding-left: 14px;
+  text-indent: -14px;
 }
 
 .signature-grid {
@@ -2300,7 +2295,8 @@ button {
   }
 
   .contract-document p,
-  .contract-table {
+  .contract-field-list,
+  .contract-term-list {
     font-size: 10.5pt;
   }
 }
