@@ -144,6 +144,7 @@ function inputType(field) {
 
 function renderBuilder() {
   const template = selectedTemplate();
+  if (!els.emptyState || !els.builder) return;
   els.emptyState.classList.toggle("hidden", Boolean(template));
   els.builder.classList.toggle("hidden", !template);
   if (!template) return;
@@ -395,7 +396,7 @@ function init() {
     renderTemplates();
   });
 
-  els.fieldForm.addEventListener("input", (event) => {
+  els.fieldForm?.addEventListener("input", (event) => {
     const field = event.target.dataset.field;
     const template = selectedTemplate();
     if (!field || !template) return;
@@ -403,25 +404,25 @@ function init() {
     updatePreview();
   });
 
-  els.clearBtn.addEventListener("click", () => {
+  els.clearBtn?.addEventListener("click", () => {
     const template = selectedTemplate();
     if (!template) return;
     state.values[template.id] = {};
     renderBuilder();
   });
 
-  els.generateBtn.addEventListener("click", updatePreview);
-  els.copyBtn.addEventListener("click", async () => {
+  els.generateBtn?.addEventListener("click", updatePreview);
+  els.copyBtn?.addEventListener("click", async () => {
     await copyText(els.contractPreview.textContent);
     els.copyBtn.textContent = "Copied";
     window.setTimeout(() => (els.copyBtn.textContent = "Copy"), 1200);
   });
-  els.downloadBtn.addEventListener("click", () => {
+  els.downloadBtn?.addEventListener("click", () => {
     updatePreview();
     printContract();
   });
-  els.printBtn.addEventListener("click", printContract);
-  els.exportJsonBtn.addEventListener("click", () => {
+  els.printBtn?.addEventListener("click", printContract);
+  els.exportJsonBtn?.addEventListener("click", () => {
     downloadText("contract-templates.json", JSON.stringify(TEMPLATES, null, 2), "application/json");
   });
 

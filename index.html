@@ -266,7 +266,17 @@
 
     <section id="dashboard-view" class="dashboard-view" aria-label="Contract dashboard">
       <button id="backHomeBtn" class="back-home" type="button">← Back to Home</button>
-      <div class="dashboard-help">520 Templates Available | Choose a template page → Fill fields → Download PDF</div>
+      <div class="dashboard-hero">
+        <span class="category-badge">Template Library</span>
+        <h2>Choose a Professional Contract Template</h2>
+        <p>Search 520 free and premium contract templates. Each card opens a dedicated SEO page with a live form, professional preview, and PDF download.</p>
+        <div class="quick-start">
+          <a href="templates/freelance-contract/">💼 Freelance Contract</a>
+          <a href="templates/nda-agreement/">🔒 NDA Agreement</a>
+          <a href="templates/residential-lease/">🏠 Lease Agreement</a>
+          <a href="templates/photography-contract/">📸 Photography Contract</a>
+        </div>
+      </div>
       <div class="app-shell">
         <aside class="sidebar" aria-label="Template filters">
           <div class="brand">
@@ -296,46 +306,6 @@
               </button>
             </div>
             <div id="templateGrid" class="template-grid"></div>
-          </section>
-
-          <section class="builder-panel" aria-label="Contract builder">
-            <div id="emptyState" class="empty-state dashboard-empty">
-              <div>
-                <div class="empty-icon">📄</div>
-                <h2>Select a Template to Begin</h2>
-                <p>Choose any template from the left to open its dedicated contract page. Fill in your details there and download as PDF.</p>
-                <div class="quick-start">
-                  <a href="templates/freelance-contract/">💼 Freelance</a>
-                  <a href="templates/nda-agreement/">🔒 NDA</a>
-                  <a href="templates/residential-lease/">🏠 Lease Agreement</a>
-                </div>
-              </div>
-            </div>
-
-            <div id="builder" class="builder hidden">
-              <div class="builder-header">
-                <div>
-                  <div id="selectedMeta" class="selected-meta"></div>
-                  <h2 id="selectedName"></h2>
-                  <p id="selectedDescription"></p>
-                </div>
-                <button id="clearBtn" class="ghost-button" type="button">Clear</button>
-              </div>
-              <form id="fieldForm" class="field-form"></form>
-              <div class="actions">
-                <button id="generateBtn" class="primary-button" type="button">Generate Draft</button>
-                <button id="copyBtn" class="secondary-button" type="button">Copy</button>
-                <button id="downloadBtn" class="secondary-button" type="button">Download PDF</button>
-                <button id="printBtn" class="secondary-button" type="button">Print</button>
-              </div>
-              <article class="preview-wrap">
-                <header>
-                  <h3>Draft Preview</h3>
-                  <span id="validationStatus">Complete the required fields</span>
-                </header>
-                <div id="contractPreview" class="contract-preview"></div>
-              </article>
-            </div>
           </section>
         </main>
       </div>
