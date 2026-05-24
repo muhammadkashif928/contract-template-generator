@@ -348,7 +348,7 @@ ${head({ title, description, canonical: url, depth: 2, schema: templateSchema(te
         <div class="tool-card tool-preview">
           <div class="preview-wrap">
             <header><h3>Live Preview</h3><span id="templateStatus">Complete the required fields</span></header>
-            <pre id="templatePreview"></pre>
+            <div id="templatePreview" class="contract-preview"></div>
           </div>
         </div>
       </section>

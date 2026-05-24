@@ -226,6 +226,17 @@ function partiesLine(template) {
   return values.length ? values.join("\n") : "The parties are identified by the completed fields below.";
 }
 
+function partiesHtml(template) {
+  const partyFields = template.fields.filter((field) => field.includes("name") || field.includes("party") || field.includes("client") || field.includes("tenant") || field.includes("borrower") || field.includes("lender") || field.includes("employer") || field.includes("employee"));
+  const rows = partyFields.slice(0, 4).map((field) => `
+    <tr>
+      <th>${escapeHtml(titleize(field))}</th>
+      <td>${escapeHtml(fieldValue(field))}</td>
+    </tr>
+  `).join("");
+  return rows || `<tr><td colspan="2">The parties are identified by the completed fields in this agreement.</td></tr>`;
+}
+
 function categoryClauses(template) {
   const clauses = {
     freelance: "The service provider will perform the services described in this agreement in a professional manner and will deliver the agreed work according to the stated schedule.",
@@ -244,49 +255,77 @@ function categoryClauses(template) {
 function generateContract() {
   const template = selectedTemplate();
   if (!template) return "";
-  const today = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-  const terms = template.fields.map((field, index) => `${index + 1}. ${titleize(field)}: ${fieldValue(field)}`).join("\n");
+  const terms = template.fields.map((field, index) => `
+    <tr>
+      <td>${index + 1}</td>
+      <th>${escapeHtml(titleize(field))}</th>
+      <td>${escapeHtml(fieldValue(field))}</td>
+    </tr>
+  `).join("");
 
-  return `${template.name.toUpperCase()}
+  return `<article class="contract-document">
+    <header class="contract-title">
+      <h1>${escapeHtml(template.name)}</h1>
+      <p>Professional Agreement Template</p>
+    </header>
 
-Draft Date: ${today}
+    <section>
+      <h2>Important Notice</h2>
+      <p>This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, regulatory requirements, and the parties' specific circumstances before signature.</p>
+    </section>
 
-IMPORTANT NOTICE
-This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, regulatory requirements, and the parties' specific circumstances before signature.
+    <section>
+      <h2>1. Parties</h2>
+      <table class="contract-table"><tbody>${partiesHtml(template)}</tbody></table>
+    </section>
 
-1. Parties
-${partiesLine(template)}
+    <section>
+      <h2>2. Background and Purpose</h2>
+      <p>The parties intend to enter into this <strong>${escapeHtml(template.name)}</strong> to document their respective rights, duties, commercial expectations, approval requirements, payment obligations, risk allocation, and signature-ready terms. This agreement concerns ${escapeHtml(template.description.toLowerCase())}</p>
+    </section>
 
-2. Background and Purpose
-The parties intend to enter into this ${template.name} to document their respective rights, duties, commercial expectations, approval requirements, payment obligations, risk allocation, and signature-ready terms. This agreement concerns: ${template.description.toLowerCase()}
+    <section>
+      <h2>3. Key Terms</h2>
+      <table class="contract-table key-terms">
+        <thead><tr><th>No.</th><th>Term</th><th>Details</th></tr></thead>
+        <tbody>${terms}</tbody>
+      </table>
+    </section>
 
-3. Key Terms
-${terms}
+    <section>
+      <h2>4. Scope, Performance, and Cooperation</h2>
+      <p>${escapeHtml(categoryClauses(template))}</p>
+      <p>Each party will cooperate in good faith, provide information reasonably required to complete the arrangement, and perform its obligations in a timely, professional, and commercially reasonable manner.</p>
+    </section>
 
-4. Scope, Performance, and Cooperation
-${categoryClauses(template)}
-Each party will cooperate in good faith, provide information reasonably required to complete the arrangement, and perform its obligations in a timely, professional, and commercially reasonable manner.
+    <section>
+      <h2>5. Payment, Fees, and Timing</h2>
+      <p>Any payment, fee, deposit, rent, salary, rate, schedule, milestone, deadline, start date, end date, or delivery date listed in the Key Terms section is incorporated into this agreement. Unless otherwise stated, payments should be made in cleared funds by the due date and disputed amounts should be raised promptly in writing.</p>
+    </section>
 
-5. Payment, Fees, and Timing
-Any payment, fee, deposit, rent, salary, rate, schedule, milestone, deadline, start date, end date, or delivery date listed in the Key Terms section is incorporated into this agreement. Unless otherwise stated, payments should be made in cleared funds by the due date and disputed amounts should be raised promptly in writing.
+    <section>
+      <h2>6. Confidentiality, Records, and Ownership</h2>
+      <p>The parties will protect confidential information received under this agreement and use it only for the agreed purpose. Ownership, license, access, usage, transfer, and recordkeeping terms are limited to the rights expressly stated in this document or any written amendment.</p>
+    </section>
 
-6. Confidentiality, Records, and Ownership
-The parties will protect confidential information received under this agreement and use it only for the agreed purpose. Ownership, license, access, usage, transfer, and recordkeeping terms are limited to the rights expressly stated in this document or any written amendment.
+    <section>
+      <h2>7. Changes, Cancellation, and Termination</h2>
+      <p>Any material change to scope, price, timing, rights, responsibilities, cancellation terms, or termination rights should be made in writing and accepted by all required parties. Termination does not affect payment obligations, confidentiality duties, accrued rights, or provisions intended to survive.</p>
+    </section>
 
-7. Changes, Cancellation, and Termination
-Any material change to scope, price, timing, rights, responsibilities, cancellation terms, or termination rights should be made in writing and accepted by all required parties. Termination does not affect payment obligations, confidentiality duties, accrued rights, or provisions intended to survive.
+    <section>
+      <h2>8. Representations and Compliance</h2>
+      <p>Each party represents that it has authority to enter into this agreement and will comply with applicable laws, permits, policies, and professional standards. Any warranties, limitations of liability, indemnities, dispute terms, or governing law requirements should be reviewed before signing.</p>
+    </section>
 
-8. Representations and Compliance
-Each party represents that it has authority to enter into this agreement and will comply with applicable laws, permits, policies, and professional standards. Any warranties, limitations of liability, indemnities, dispute terms, or governing law requirements should be reviewed before signing.
-
-9. Legal Review
-The parties should review this draft for local legal requirements before signing. This generated document is a starting point and is not legal advice.
-
-10. Signatures
-
-Party Signature: _______________________________  Date: _______________
-
-Party Signature: _______________________________  Date: _______________`;
+    <section>
+      <h2>9. Signatures</h2>
+      <div class="signature-grid">
+        <div><span>Party Signature</span><strong>Date</strong></div>
+        <div><span>Party Signature</span><strong>Date</strong></div>
+      </div>
+    </section>
+  </article>`;
 }
 
 function missingFields() {
@@ -297,9 +336,19 @@ function missingFields() {
 
 function updatePreview() {
   const missing = missingFields();
-  els.contractPreview.textContent = generateContract();
+  els.contractPreview.innerHTML = generateContract();
   els.validationStatus.textContent = missing.length ? `${missing.length} field${missing.length === 1 ? "" : "s"} missing` : "Ready to export";
   els.validationStatus.classList.toggle("ready", missing.length === 0);
+}
+
+function printContract() {
+  const template = selectedTemplate();
+  const originalTitle = document.title;
+  if (template) document.title = template.name;
+  window.print();
+  window.setTimeout(() => {
+    document.title = originalTitle;
+  }, 500);
 }
 
 function downloadText(filename, text, type = "text/plain") {
@@ -369,9 +418,9 @@ function init() {
   });
   els.downloadBtn.addEventListener("click", () => {
     updatePreview();
-    window.print();
+    printContract();
   });
-  els.printBtn.addEventListener("click", () => window.print());
+  els.printBtn.addEventListener("click", printContract);
   els.exportJsonBtn.addEventListener("click", () => {
     downloadText("contract-templates.json", JSON.stringify(TEMPLATES, null, 2), "application/json");
   });
