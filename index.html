@@ -4,24 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="author" content="Contract Generator" />
+    <meta name="theme-color" content="#10233f" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Free Contract Template Generator — Download PDF Instantly | Contract Generator</title>
     <meta name="description" content="Generate free professional legal contract templates and download as PDF instantly. 500+ templates including freelance contracts, NDA, employment agreements, lease agreements and more. No signup required." />
-    <meta name="keywords" content="free contract template, contract generator, freelance contract, NDA template, employment contract, lease agreement, PDF contract, legal template free" />
     <link rel="canonical" href="https://contract-template-generator-lake.vercel.app/" />
     <meta property="og:title" content="Free Contract Template Generator" />
-    <meta property="og:description" content="500+ free and premium legal contract templates. Fill in details, download as PDF instantly. No signup." />
+    <meta property="og:description" content="500+ free legal contract templates. Fill in details, preview your draft, and download as PDF instantly. No signup." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://contract-template-generator-lake.vercel.app/" />
-    <meta property="og:image" content="https://contract-template-generator-lake.vercel.app/og-image.jpg" />
+    <meta property="og:image" content="https://contract-template-generator-lake.vercel.app/contract_generator_logo_transparent.png" />
     <meta property="og:site_name" content="Contract Generator" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Free Contract Template Generator" />
-    <meta name="twitter:description" content="500+ free and premium legal contract templates. Fill in details, download as PDF instantly. No signup." />
-    <meta name="twitter:image" content="https://contract-template-generator-lake.vercel.app/og-image.jpg" />
+    <meta name="twitter:description" content="500+ free legal contract templates. Fill in details, preview your draft, and download as PDF instantly. No signup." />
+    <meta name="twitter:image" content="https://contract-template-generator-lake.vercel.app/contract_generator_logo_transparent.png" />
     <link rel="icon" type="image/png" href="favicon.io.png" />
     <link rel="apple-touch-icon" href="favicon.io.png" />
-    <!-- Google Analytics — Replace GA_MEASUREMENT_ID with your actual ID -->
+    <!-- Google Analytics - replace GA_MEASUREMENT_ID with your actual ID after configuring consent mode. -->
     <!-- Get your ID from: analytics.google.com -->
     <!--
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
@@ -33,7 +35,7 @@
     </script>
     -->
     <!-- Uncomment above and replace GA_MEASUREMENT_ID after creating Analytics account -->
-    <!-- Google AdSense — Replace with your publisher ID after approval -->
+    <!-- Google AdSense - replace with your publisher ID after approval. -->
     <!-- Get approved at: google.com/adsense -->
     <!--
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
@@ -51,11 +53,38 @@
         "operatingSystem": "Any",
         "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"},
         "featureList": [
-          "500+ free and premium contract templates",
+          "500+ free contract templates",
           "Instant PDF download",
           "No signup required",
           "Live contract preview",
           "All contract categories"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://contract-template-generator-lake.vercel.app/#organization",
+            "name": "Contract Generator",
+            "url": "https://contract-template-generator-lake.vercel.app",
+            "logo": "https://contract-template-generator-lake.vercel.app/favicon.io.png"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://contract-template-generator-lake.vercel.app/#website",
+            "url": "https://contract-template-generator-lake.vercel.app",
+            "name": "Contract Generator",
+            "description": "Free contract template generator with guided legal document resources, instant PDF drafts, and privacy-first browser-based forms.",
+            "publisher": {"@id": "https://contract-template-generator-lake.vercel.app/#organization"},
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://contract-template-generator-lake.vercel.app/templates/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
         ]
       }
     </script>
@@ -71,7 +100,7 @@
           {"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No account required. Choose a template, fill in your details, and download. No email address needed."}},
           {"@type":"Question","name":"What format is the download?","acceptedAnswer":{"@type":"Answer","text":"Contracts download through your browser as PDF-ready documents using the print or save-as-PDF flow."}},
           {"@type":"Question","name":"Can I use these templates for my business?","acceptedAnswer":{"@type":"Answer","text":"Yes. Templates are provided for general commercial and personal use, with attorney review recommended for significant transactions."}},
-          {"@type":"Question","name":"How often are templates updated?","acceptedAnswer":{"@type":"Answer","text":"We review and update templates regularly to reflect common legal practices and standards."}}
+          {"@type":"Question","name":"How often are templates reviewed?","acceptedAnswer":{"@type":"Answer","text":"We review templates and guides regularly for clarity, broken links and common drafting practices. Laws vary by jurisdiction, so important agreements should still be reviewed by a qualified attorney."}}
         ]
       }
     </script>
@@ -97,6 +126,7 @@
         <a href="#how-it-works" data-home-anchor>How It Works</a>
         <a href="blog/">Blog</a>
         <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
       <button class="nav-cta" type="button" data-open-dashboard>Start Creating Contract →</button>
       <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -108,13 +138,14 @@
       <a href="#how-it-works" data-mobile-close data-home-anchor>How It Works</a>
       <a href="blog/">Blog</a>
       <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
       <button class="nav-cta" type="button" data-open-dashboard>Start Creating Contract →</button>
     </div>
 
     <main id="home-view" class="home-view">
       <section class="home-hero">
         <div class="hero-content">
-          <div class="hero-badge reveal">500+ Free & Premium Contract Templates — No Signup Required</div>
+          <div class="hero-badge reveal">500+ Free Contract Templates — No Signup Required</div>
           <h1 class="reveal">Professional Contract<br />Templates — <span>100% Free</span></h1>
           <p class="hero-subtitle reveal">Generate legally-structured contract templates in seconds. Fill in your details, preview live, and download as PDF. No account needed. Always free.</p>
           <form class="hero-search reveal" id="hero-search-form">
@@ -135,7 +166,7 @@
             <a href="#how-it-works">Watch how it works ↓</a>
           </div>
           <div class="hero-trust reveal">
-            <span>520 Templates</span><span>Free & Premium</span><span>Instant PDF</span><span>No Signup</span>
+            <span>520 Templates</span><span>Free Drafts</span><span>Instant PDF</span><span>No Signup</span>
           </div>
         </div>
         <aside class="floating-document" aria-hidden="true">
@@ -198,7 +229,7 @@
           <p>No legal knowledge required.</p>
         </div>
         <div class="steps-row">
-          <article><b>01</b><i>⌕</i><h3>Choose a Template</h3><p>Browse 520 free and premium contract templates organized by category. Search by name or type.</p></article>
+          <article><b>01</b><i>⌕</i><h3>Choose a Template</h3><p>Browse 520 free contract templates organized by category. Search by name or type.</p></article>
           <article><b>02</b><i>✎</i><h3>Fill In Your Details</h3><p>Complete the simple form. Watch your contract update live in the preview panel.</p></article>
           <article><b>03</b><i>⇩</i><h3>Download as PDF</h3><p>Click download and instantly get a professionally formatted PDF contract.</p></article>
         </div>
@@ -211,19 +242,19 @@
           <p>The simplest way to create professional contracts online.</p>
         </div>
         <div class="why-grid">
-          <article><i>📝</i><h3>Lawyer-Structured Templates</h3><p>Every template is based on widely accepted legal contract standards and best practices.</p></article>
+          <article><i>📝</i><h3>Structured Drafts</h3><p>Templates use common contract sections so you can organize names, scope, payment terms, dates, rights and signatures.</p></article>
           <article><i>⚡</i><h3>Instant PDF Download</h3><p>Your PDF is generated in your browser instantly. No waiting, no email, no processing time.</p></article>
           <article><i>🔒</i><h3>100% Private</h3><p>Your data never leaves your device. We process everything locally — nothing is stored on servers.</p></article>
           <article><i>✅</i><h3>Always Free</h3><p>No hidden fees, no premium tiers, no credit card. Every template is free to download forever.</p></article>
           <article><i>📱</i><h3>Works on Any Device</h3><p>Fully responsive on desktop, tablet and mobile. Generate contracts anywhere, anytime.</p></article>
-          <article><i>🔄</i><h3>Always Up to Date</h3><p>Templates updated regularly to reflect current legal standards and best practices.</p></article>
+          <article><i>🔄</i><h3>Regularly Reviewed</h3><p>We review template language and guides for clarity, usefulness and common contract drafting practices.</p></article>
         </div>
       </section>
 
       <section class="home-section seo-copy reveal">
         <h2>Free Contract Templates for Every Situation</h2>
         <p>Whether you're a freelancer protecting your work, a landlord renting out property, or a business owner hiring staff, having the right contract in place is essential.</p>
-        <p>Contract Generator provides 520 free and premium, professionally-structured contract templates covering every major legal situation. From simple freelance agreements to comprehensive LLC operating agreements, our templates give you a solid legal foundation without the expensive attorney fees.</p>
+        <p>Contract Generator provides 520 free, professionally structured contract templates covering common legal and business situations. From simple freelance agreements to comprehensive LLC operating agreements, our templates help you prepare an organized draft before signing or seeking attorney review.</p>
         <h3>Freelance and Service Contracts</h3>
         <p>For independent contractors and consultants, our freelance contract templates cover scope of work, payment terms, intellectual property rights, and revision policies. Whether you're a graphic designer, web developer, photographer, or copywriter, we have a template built for your situation.</p>
         <h3>Employment Agreements</h3>
@@ -242,9 +273,9 @@
           <p>Expert articles to help you understand contracts.</p>
         </div>
         <div class="blog-grid">
-          <a class="blog-card" href="blog/how-to-write-freelance-contract.html"><span class="category-badge">Freelance</span><h2>How to Write a Freelance Contract That Protects You</h2><p>Every freelancer needs a solid contract. Here's what to include to protect your work and ensure you get paid.</p><div class="blog-meta"><span>May 2026</span><span>7 min read</span></div><strong>Read Article →</strong></a>
-          <a class="blog-card" href="blog/what-makes-contract-legally-binding.html"><span class="category-badge">Legal Basics</span><h2>What Makes a Contract Legally Binding? 6 Key Elements</h2><p>Not all contracts are enforceable. Learn the 6 essential elements that make a contract legally binding.</p><div class="blog-meta"><span>May 2026</span><span>8 min read</span></div><strong>Read Article →</strong></a>
-          <a class="blog-card" href="blog/independent-contractor-vs-employee.html"><span class="category-badge">Employment</span><h2>Independent Contractor vs Employee: Legal Differences</h2><p>Misclassifying workers can result in heavy fines. Understand the legal differences before you hire.</p><div class="blog-meta"><span>May 2026</span><span>6 min read</span></div><strong>Read Article →</strong></a>
+          <a class="blog-card" href="blog/how-to-write-freelance-contract/"><span class="category-badge">Freelance</span><h2>How to Write a Freelance Contract That Protects You</h2><p>Every freelancer needs a clear written contract. Learn what to include for scope, payment, revisions and ownership.</p><div class="blog-meta"><span>May 24, 2026</span><span>8 min read</span></div><strong>Read Article →</strong></a>
+          <a class="blog-card" href="blog/what-makes-contract-legally-binding/"><span class="category-badge">Legal Basics</span><h2>What Makes a Contract Legally Binding? 6 Key Elements</h2><p>Not every promise is enforceable. Learn the core elements that usually make a contract legally binding.</p><div class="blog-meta"><span>May 24, 2026</span><span>8 min read</span></div><strong>Read Article →</strong></a>
+          <a class="blog-card" href="blog/small-business-contract-mistakes/"><span class="category-badge">Business</span><h2>10 Small Business Contract Mistakes to Avoid</h2><p>Protect your cash flow, scope, IP, renewal dates and signature process before you sign the next agreement.</p><div class="blog-meta"><span>May 24, 2026</span><span>9 min read</span></div><strong>Read Article →</strong></a>
         </div>
         <a class="btn-outline-navy" href="blog/">Read All Legal Guides →</a>
       </section>
@@ -262,7 +293,7 @@
           <details><summary>Do I need to create an account?</summary><p>No account is required. Just choose a template, fill in your details, and download. No email address needed.</p></details>
           <details><summary>What format is the download?</summary><p>All contracts download as PDF-ready files through your browser, which are universally accepted, professionally formatted, and ready to print or send electronically.</p></details>
           <details><summary>Can I use these templates for my business?</summary><p>Yes. Our templates are provided for general commercial and personal use. We recommend having an attorney review any contract before use in significant transactions.</p></details>
-          <details><summary>How often are templates updated?</summary><p>We review and update our templates regularly to reflect changes in common legal practices and standards.</p></details>
+          <details><summary>How often are templates reviewed?</summary><p>We review templates and guides regularly for clarity, broken links and common drafting practices. Laws vary by jurisdiction, so important agreements should still be reviewed by a qualified attorney.</p></details>
         </div>
       </section>
 
@@ -278,7 +309,7 @@
       <div class="dashboard-hero">
         <span class="category-badge">Template Library</span>
         <h2>Choose a Professional Contract Template</h2>
-        <p>Search 520 free and premium contract templates. Each card opens a dedicated SEO page with a live form, professional preview, and PDF download.</p>
+        <p>Search 520 free contract templates. Each card opens a dedicated page with a live form, professional preview, and PDF download.</p>
         <div class="quick-start">
           <a href="templates/freelance-contract/">💼 Freelance Contract</a>
           <a href="templates/nda-agreement/">🔒 NDA Agreement</a>
