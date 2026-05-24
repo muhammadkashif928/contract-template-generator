@@ -59,9 +59,9 @@ body {
 .home-brand .brand-logo,
 .sidebar .brand-logo,
 .footer-brand-row .brand-logo {
-  padding: 5px 8px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.96);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .sidebar .brand-logo {
