@@ -206,7 +206,10 @@ function head({ title, description, canonical, depth = 0, robots = "index, follo
 function topbar(depth = 0) {
   const prefix = rootPrefix(depth);
   return `<header class="site-topbar">
-      <a class="brand" href="${prefix}index.html"><img class="brand-logo" src="${prefix}contract_generator_logo_transparent.png" alt="Contract Generator" /></a>
+      <a class="brand" href="${prefix}index.html">
+        <img class="brand-icon" src="${prefix}favicon.io.png" alt="" aria-hidden="true" />
+        <span class="brand-copy"><strong>Contract Generator</strong><small>Free Legal Templates</small></span>
+      </a>
       <nav class="top-nav" aria-label="Main navigation">
         <a href="${prefix}templates/">Templates</a>
         <a href="${prefix}blog/">Blog</a>

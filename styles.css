@@ -42,51 +42,76 @@ body {
 
 .home-brand {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
   color: #fff;
   text-decoration: none;
 }
 
-.brand-logo {
+.brand-icon {
   display: block;
-  width: 220px;
-  max-width: 46vw;
-  height: auto;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
 }
 
-.home-brand .brand-logo,
-.sidebar .brand-logo,
-.footer-brand-row .brand-logo {
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
-  filter: brightness(0) invert(1);
+.brand-copy {
+  display: grid;
+  gap: 2px;
+  line-height: 1.1;
 }
 
-.sidebar .brand-logo {
-  width: 230px;
-  max-width: 100%;
+.brand-copy strong {
+  color: currentColor;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
-.site-topbar .brand-logo {
-  width: 210px;
-}
-
-.footer-brand-row .brand-logo {
-  width: 240px;
-}
-
-.home-brand strong,
-.home-brand small {
-  display: block;
-}
-
-.home-brand small {
-  margin-top: 2px;
+.brand-copy small {
   color: var(--gold);
-  font-size: 11px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.site-topbar .brand-icon {
+  width: 52px;
+  height: 52px;
+}
+
+.site-topbar .brand-copy strong {
+  font-size: 20px;
+}
+
+.site-topbar .brand-copy small {
+  font-size: 10px;
+}
+
+.sidebar .brand-icon {
+  width: 58px;
+  height: 58px;
+}
+
+.sidebar .brand-copy strong {
+  font-size: 20px;
+}
+
+.sidebar .brand-copy small {
+  font-size: 10px;
+}
+
+.footer-brand-row .brand-icon {
+  width: 52px;
+  height: 52px;
+}
+
+.footer-brand-row .brand-copy strong {
+  font-size: 20px;
+}
+
+.footer-brand-row .brand-copy small {
+  font-size: 10px;
 }
 
 .home-nav-links {
