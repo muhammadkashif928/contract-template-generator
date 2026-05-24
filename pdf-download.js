@@ -22,7 +22,7 @@
       ];
     }
     const sections = [
-      { heading: "Important Notice", paragraphs: [data.notice] },
+      { heading: "Contract Details", paragraphs: [data.notice] },
       { heading: "1. Parties", rows: data.parties },
       { heading: "2. Background and Purpose", paragraphs: data.background },
       ...(data.sections || [])
@@ -153,7 +153,7 @@
     const fallbackData = {
       title: filename || "Contract Agreement",
       subtitle: "",
-      notice: "This document is a professionally structured template for informational purposes.",
+      notice: "This contract records the agreement between the parties, describes the subject matter of the transaction, and sets out the rights, responsibilities, payment terms, performance obligations, notices, and signature requirements agreed by the parties.",
       parties: [],
       background: [element?.textContent || ""],
       keyTerms: [],

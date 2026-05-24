@@ -78,6 +78,30 @@
       return { heading, paragraphs: paragraphs.filter(Boolean) };
     }
 
+    function agreementSubject() {
+      if (includesAny(text, ["non-disclosure", "nda", "confidential"])) return "the disclosure, protection, use, return, and permitted handling of confidential information exchanged between the Parties";
+      if (includesAny(text, ["loan", "promissory", "iou", "debt repayment", "debt settlement", "payment plan"])) return "the loan, repayment obligations, payment schedule, default rights, collateral, and related financial responsibilities agreed by the Parties";
+      if (template.category === "freelance") return "the professional services, deliverables, schedule, fees, review process, ownership rights, confidentiality obligations, and termination terms for the project";
+      if (template.category === "employment") return "the employment relationship, position duties, compensation, workplace expectations, confidentiality obligations, intellectual property duties, and separation terms";
+      if (template.category === "rental") return "the rental of the premises, occupancy rights, rent, deposit, maintenance duties, utilities, property rules, notices, default, and surrender obligations";
+      if (template.category === "business") return "the commercial relationship, products or services, payment terms, delivery obligations, performance standards, warranties, risk allocation, confidentiality, and termination rights";
+      if (template.category === "ip") return "the ownership, license, transfer, permitted use, restrictions, royalties, confidentiality, enforcement, and termination rights relating to the intellectual property";
+      if (template.category === "personal") return "the personal arrangement, payment duties, property or family responsibilities, schedules, default terms, notices, and other obligations agreed by the Parties";
+      if (template.category === "construction") return "the construction project, scope of work, materials, schedule, contract price, payment milestones, change orders, permits, insurance, warranties, and completion obligations";
+      if (template.category === "events") return "the event services, date, location, service hours, logistics, fees, deposits, cancellation terms, force majeure, and insurance obligations";
+      if (template.category === "vehicle") return "the vehicle transaction, vehicle description, payment terms, transfer or possession date, condition disclosures, odometer statement, insurance responsibility, and as-is terms";
+      return "the rights, responsibilities, payments, performance obligations, notices, and other terms agreed by the Parties";
+    }
+
+    function contractDetailsSection() {
+      const firstName = `${firstRole}_name`;
+      const secondName = `${secondRole}_name`;
+      return section("Contract Details", [
+        paragraph(`This ${escapeHtml(template.name)} sets out the agreement between ${value(firstName)} (the "${escapeHtml(firstLabel)}") and ${value(secondName)} (the "${escapeHtml(secondLabel)}").`),
+        paragraph(`This contract is about ${agreementSubject()}. It is intended to create a clear written record of the Parties' understanding, including what each Party must do, when performance is due, how payment or consideration will be handled, and which obligations continue after the relationship ends.`)
+      ]);
+    }
+
     function extraTerms() {
       const ignored = new Set([
         `${firstRole}_name`,
@@ -331,9 +355,7 @@
     }
 
     const sections = [
-      section("Important Notice", [
-        paragraph("This template is provided for general informational purposes and should be reviewed for the governing jurisdiction, transaction value, industry requirements, and the Parties' specific facts before signature.")
-      ]),
+      contractDetailsSection(),
       partySection(),
       ...categorySections()
     ];
