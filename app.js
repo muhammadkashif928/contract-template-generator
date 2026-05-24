@@ -291,7 +291,7 @@ function generateContractData() {
   if (!template) return null;
   return {
     title: template.name,
-    subtitle: "Professional Agreement Template",
+    subtitle: "",
     notice: "This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, regulatory requirements, and the parties' specific circumstances before signature.",
     parties: partyRows(template),
     background: [
@@ -324,7 +324,6 @@ function generateContract() {
   return `<article class="contract-document">
     <div class="contract-title">
       <h1>${escapeHtml(data.title)}</h1>
-      <p>${escapeHtml(data.subtitle)}</p>
     </div>
 
     <section>

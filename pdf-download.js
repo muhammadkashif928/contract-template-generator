@@ -95,9 +95,14 @@
       const titleLines = doc.splitTextToSize(title, contentWidth);
       text(titleLines, pageWidth / 2, y, { align: "center" });
       y += titleLines.length * 22;
-      setFont("times", "italic", 11);
-      text(normalizeText(data.subtitle || "Professional Agreement Template"), pageWidth / 2, y, { align: "center" });
-      y += 28;
+      const subtitle = normalizeText(data.subtitle);
+      if (subtitle) {
+        setFont("times", "italic", 11);
+        text(subtitle, pageWidth / 2, y, { align: "center" });
+        y += 28;
+      } else {
+        y += 14;
+      }
       line(margin, y, pageWidth - margin, y);
       y += 28;
 
@@ -138,6 +143,7 @@
   function downloadContractPdf(element, filename) {
     const fallbackData = {
       title: filename || "Contract Agreement",
+      subtitle: "",
       notice: "This document is a professionally structured template for informational purposes.",
       parties: [],
       background: [element?.textContent || ""],
@@ -165,7 +171,7 @@
     }
 
     const title = article.querySelector(".contract-title h1")?.textContent || filename || "Contract Agreement";
-    const subtitle = article.querySelector(".contract-title p")?.textContent || "Professional Agreement Template";
+    const subtitle = article.querySelector(".contract-title p")?.textContent || "";
     const data = {
       title,
       subtitle,
