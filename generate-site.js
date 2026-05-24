@@ -195,6 +195,8 @@ function head({ title, description, canonical, depth = 0, robots = "index, follo
     <meta name="twitter:title" content="${esc(title)}" />
     <meta name="twitter:description" content="${esc(description)}" />
     <meta name="twitter:image" content="${SITE_URL}/og-image.jpg" />
+    <link rel="icon" type="image/png" href="${prefix}contract_generator_logo_transparent.png" />
+    <link rel="apple-touch-icon" href="${prefix}contract_generator_logo_transparent.png" />
     ${analyticsPlaceholders()}
     ${schema}
     <link rel="stylesheet" href="${prefix}styles.css" />
