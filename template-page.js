@@ -59,7 +59,7 @@
     status.classList.toggle("ready", missing === 0);
   }
 
-  async function printPdf() {
+  function requireCompleteBeforeDownload() {
     const missing = template.fields.filter((field) => !values[field]?.trim()).length;
     if (missing) {
       document.querySelector("#templateFieldForm")?.reportValidity?.();
@@ -68,14 +68,24 @@
         status.textContent = `Complete all ${missing} required field${missing === 1 ? "" : "s"} before downloading`;
         status.classList.remove("ready");
       }
-      return;
+      return false;
     }
+    return true;
+  }
+
+  async function printPdf() {
+    if (!requireCompleteBeforeDownload()) return;
     await window.downloadContractPdfFromElement?.(document.querySelector("#templatePreview"), template.name);
   }
 
+  function downloadWord() {
+    if (!requireCompleteBeforeDownload()) return;
+    window.downloadContractWordFromElement?.(document.querySelector("#templatePreview"), template.name);
+  }
+
   function updateDynamicSeo() {
-    const title = `Free ${template.name} — Download PDF | Contract Generator`;
-    const description = `Generate a free ${template.name} and download as PDF instantly. Fill in your details and get a professional ${template.name} in seconds. No signup required.`;
+    const title = `Free ${template.name} — Download PDF or Word | Contract Generator`;
+    const description = `Generate a free ${template.name} and download as PDF or Word instantly. Fill in your details and get a professional ${template.name} in seconds. No signup required.`;
     document.title = title;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) metaDescription.setAttribute("content", description);
@@ -100,4 +110,5 @@
     updatePreview();
   });
   document.querySelector("#downloadPdfBtn")?.addEventListener("click", printPdf);
+  document.querySelector("#downloadWordBtn")?.addEventListener("click", downloadWord);
 })();

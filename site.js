@@ -20,8 +20,9 @@
               <img class="brand-icon" src="${base}favicon.io.png" alt="" aria-hidden="true" />
               <span class="brand-copy"><strong>Contract Generator</strong><small>Free Legal Templates</small></span>
             </div>
-            <p class="footer-tagline">Free professional contract templates. Download as PDF instantly.</p>
+            <p class="footer-tagline">Free professional contract templates. Download as PDF or Word instantly.</p>
             <p class="footer-small">Not a law firm. Templates are for informational purposes only.</p>
+            <p class="footer-small">Support: <a href="mailto:support@contractpdf.com">support@contractpdf.com</a></p>
           </div>
           <div class="footer-column">
             <h2>Popular Templates</h2>
@@ -56,7 +57,7 @@
         </div>
         <div class="footer-bottom">
           <div>© ${currentYear} Contract Generator. All Rights Reserved.</div>
-          <div class="footer-center">🔒 SSL Secured | ⚡ Free Forever | 📄 500+ Templates</div>
+          <div class="footer-center">🔒 SSL Secured | ⚡ Free Forever | 📄 PDF & Word</div>
           <div class="footer-social footer-legal-links" aria-label="Legal links">
             <a href="${base}terms.html#disclaimer">Disclaimer</a>
             <a href="${base}terms.html">Terms & Conditions</a>

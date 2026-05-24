@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
-Sitemap: https://contract-template-generator-lake.vercel.app/sitemap.xml
+Sitemap: https://contractpdf.com/sitemap.xml

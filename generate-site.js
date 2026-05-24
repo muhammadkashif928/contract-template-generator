@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-const SITE_URL = "https://contract-template-generator-lake.vercel.app";
+const SITE_URL = "https://contractpdf.com";
 const source = fs.readFileSync("templates.js", "utf8") + "\nthis.TEMPLATES = TEMPLATES; this.CATEGORY_LABELS = CATEGORY_LABELS;";
 const context = {};
 vm.createContext(context);
@@ -15,7 +15,7 @@ const SITE_DESCRIPTION = "Free contract template generator with guided legal doc
 const OG_IMAGE = `${SITE_URL}/contract_generator_logo_transparent.png`;
 const PUBLISH_DATE = "2026-05-24";
 const DISPLAY_DATE = "May 24, 2026";
-const SUPPORT_EMAIL = "hello@contractgenerator.example";
+const SUPPORT_EMAIL = "support@contractpdf.com";
 
 const topSlugMap = {
   "freelance-contract": "freelance-contract",
@@ -963,7 +963,12 @@ ${JSON.stringify({
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
       url: SITE_URL,
-      logo: `${SITE_URL}/favicon.io.png`
+      logo: `${SITE_URL}/favicon.io.png`,
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: SUPPORT_EMAIL,
+        contactType: "customer support"
+      }
     },
     {
       "@type": "WebSite",
@@ -1143,8 +1148,8 @@ function relatedTemplates(template) {
 function templatePage(template) {
   const slug = slugFor(template);
   const url = `${SITE_URL}/templates/${slug}/`;
-  const title = `Free ${template.name} — Download PDF | Contract Generator`;
-  const description = `Generate a free ${template.name} and download as PDF instantly. Fill in details and create a professional contract with no signup.`;
+  const title = `Free ${template.name} — Download PDF or Word | Contract Generator`;
+  const description = `Generate a free ${template.name} and download as PDF or Word instantly. Fill in details and create a professional contract with no signup.`;
   const related = relatedTemplates(template).length ? relatedTemplates(template) : TEMPLATES.filter((item) => item.id !== template.id).slice(0, 4);
   const cat = CATEGORY_LABELS[template.category];
   return `<!doctype html>
@@ -1157,7 +1162,7 @@ ${head({ title, description, canonical: url, depth: 2, schema: templateSchema(te
       <header class="page-header">
         <nav class="breadcrumb"><a href="../../index.html">Home</a><span>&gt;</span><a href="../">Templates</a><span>&gt;</span><span>${esc(cat)}</span><span>&gt;</span><span>${esc(template.name)}</span></nav>
         <span class="category-badge">${esc(cat)}</span>
-        <h1>Free ${esc(template.name)} — Download PDF Instantly</h1>
+        <h1>Free ${esc(template.name)} — Download PDF or Word Instantly</h1>
         <p class="page-subtitle">${esc(template.description)}</p>
         <div class="trust-row"><span>Free Forever</span><span>Instant PDF</span><span>No Signup</span><span>${template.fields.length} Fields</span></div>
       </header>
@@ -1166,7 +1171,10 @@ ${head({ title, description, canonical: url, depth: 2, schema: templateSchema(te
         <div class="tool-card">
           <h2>Build Your Contract</h2>
           <form id="templateFieldForm" class="field-form"></form>
-          <button id="downloadPdfBtn" class="download-pdf" type="button">Download PDF</button>
+          <div class="download-actions" aria-label="Download options">
+            <button id="downloadPdfBtn" class="download-pdf" type="button">Download PDF</button>
+            <button id="downloadWordBtn" class="download-word" type="button">Download Word</button>
+          </div>
         </div>
         <div class="tool-card tool-preview">
           <div class="preview-wrap">
@@ -1196,7 +1204,7 @@ ${head({ title, description, canonical: url, depth: 2, schema: templateSchema(te
         <ol>
           <li><strong>Fill in the form fields with your details.</strong></li>
           <li><strong>Preview your contract updating live on screen.</strong></li>
-          <li><strong>Click Download PDF — your contract is ready instantly.</strong></li>
+          <li><strong>Click Download PDF or Download Word — your contract is ready instantly.</strong></li>
         </ol>
       </section>
 
@@ -1461,7 +1469,7 @@ function privacyPage() {
     ["Data Security", "The site is served over HTTPS where supported by the host. Contract generation happens locally in your browser. No online system is perfect, but minimizing collection of contract form data reduces risk."],
     ["Children's Privacy", "Contract Generator is intended for a general audience and is not directed to children under 13. We do not knowingly collect personal information from children."],
     ["Changes to This Policy", "We may update this policy as the site, analytics, advertising, or legal requirements change. The updated date on this page shows when the policy was last revised."],
-    ["Contact Us", `For privacy questions, contact ${SUPPORT_EMAIL}. Replace this placeholder with your real public support email before submitting the site for AdSense review.`]
+    ["Contact Us", `For privacy questions, contact ${SUPPORT_EMAIL}.`]
   ];
   const schema = `<script type="application/ld+json">
 ${JSON.stringify({
@@ -1504,7 +1512,7 @@ ${head({
 })}
   <body>${topbar()}${ad("ad-top")}<main class="page-wrap content-body">
     <header class="page-header"><h1>Contact Contract Generator</h1><p class="page-subtitle">Questions, corrections and feedback about our free contract templates.</p></header>
-    <section class="content-section"><h2>Support Email</h2><p>Email: <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a></p><p>Before applying for AdSense, replace this placeholder address with the real public inbox for this website. A working contact method helps visitors and reviewers understand who is responsible for the site.</p></section>
+    <section class="content-section"><h2>Support Email</h2><p>Email: <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a></p><p>Use this address for template access issues, broken links, privacy questions, content corrections and general website feedback.</p></section>
     <section class="content-section"><h2>What We Can Help With</h2><ul><li>Template access or PDF download issues.</li><li>Corrections to broken links, unclear copy, or formatting problems.</li><li>Privacy questions about browser-based contract generation.</li><li>General site feedback.</li></ul></section>
     <section class="content-section cta-box"><h2>Legal Advice Notice</h2><p>We cannot provide legal advice, review your specific contract, or tell you what to sign. For advice about your facts or local law, contact a qualified attorney.</p></section>
     ${ad("ad-mid")}${ad("ad-bottom")}
@@ -1523,7 +1531,7 @@ function termsPage() {
     ["Third-Party Services and Links", "The site may reference third-party services, including analytics, advertising, PDF tools, hosting, or external legal resources. We are not responsible for third-party content or practices."],
     ["Limitation of Liability", "To the fullest extent permitted by law, Contract Generator and its operators are not liable for indirect, incidental, special, consequential, or punitive damages arising from use of the site or templates."],
     ["Changes to the Site or Terms", "We may update templates, guides, features, policies, or these terms from time to time. Continued use of the site after updates means you accept the revised terms."],
-    ["Contact", `Questions about these terms can be sent to ${SUPPORT_EMAIL}. Replace this placeholder with the real public support email before applying for AdSense.`]
+    ["Contact", `Questions about these terms can be sent to ${SUPPORT_EMAIL}.`]
   ];
   const schema = `<script type="application/ld+json">
 ${JSON.stringify({

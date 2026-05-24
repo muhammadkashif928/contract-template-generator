@@ -8,19 +8,19 @@
     <meta name="author" content="Contract Generator" />
     <meta name="theme-color" content="#10233f" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Free Duplex Rental Agreement — Download PDF | Contract Generator</title>
-    <meta name="description" content="Generate a free Duplex Rental Agreement and download as PDF instantly. Fill in details and create a professional contract with no signup." />
-    <link rel="canonical" href="https://contract-template-generator-lake.vercel.app/templates/duplex-rental-agreement/" />
-    <meta property="og:title" content="Free Duplex Rental Agreement — Download PDF | Contract Generator" />
-    <meta property="og:description" content="Generate a free Duplex Rental Agreement and download as PDF instantly. Fill in details and create a professional contract with no signup." />
+    <title>Free Duplex Rental Agreement — Download PDF or Word | Contract Generator</title>
+    <meta name="description" content="Generate a free Duplex Rental Agreement and download as PDF or Word instantly. Fill in details and create a professional contract with no signup." />
+    <link rel="canonical" href="https://contractpdf.com/templates/duplex-rental-agreement/" />
+    <meta property="og:title" content="Free Duplex Rental Agreement — Download PDF or Word | Contract Generator" />
+    <meta property="og:description" content="Generate a free Duplex Rental Agreement and download as PDF or Word instantly. Fill in details and create a professional contract with no signup." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://contract-template-generator-lake.vercel.app/templates/duplex-rental-agreement/" />
-    <meta property="og:image" content="https://contract-template-generator-lake.vercel.app/contract_generator_logo_transparent.png" />
+    <meta property="og:url" content="https://contractpdf.com/templates/duplex-rental-agreement/" />
+    <meta property="og:image" content="https://contractpdf.com/contract_generator_logo_transparent.png" />
     <meta property="og:site_name" content="Contract Generator" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Free Duplex Rental Agreement — Download PDF | Contract Generator" />
-    <meta name="twitter:description" content="Generate a free Duplex Rental Agreement and download as PDF instantly. Fill in details and create a professional contract with no signup." />
-    <meta name="twitter:image" content="https://contract-template-generator-lake.vercel.app/contract_generator_logo_transparent.png" />
+    <meta name="twitter:title" content="Free Duplex Rental Agreement — Download PDF or Word | Contract Generator" />
+    <meta name="twitter:description" content="Generate a free Duplex Rental Agreement and download as PDF or Word instantly. Fill in details and create a professional contract with no signup." />
+    <meta name="twitter:image" content="https://contractpdf.com/contract_generator_logo_transparent.png" />
     <link rel="icon" type="image/png" href="../../favicon.io.png" />
     <link rel="apple-touch-icon" href="../../favicon.io.png" />
     <!-- Google Analytics - replace GA_MEASUREMENT_ID with your actual ID after configuring consent mode. -->
@@ -49,23 +49,28 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://contract-template-generator-lake.vercel.app/#organization",
+      "@id": "https://contractpdf.com/#organization",
       "name": "Contract Generator",
-      "url": "https://contract-template-generator-lake.vercel.app",
-      "logo": "https://contract-template-generator-lake.vercel.app/favicon.io.png"
+      "url": "https://contractpdf.com",
+      "logo": "https://contractpdf.com/favicon.io.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@contractpdf.com",
+        "contactType": "customer support"
+      }
     },
     {
       "@type": "WebSite",
-      "@id": "https://contract-template-generator-lake.vercel.app/#website",
-      "url": "https://contract-template-generator-lake.vercel.app",
+      "@id": "https://contractpdf.com/#website",
+      "url": "https://contractpdf.com",
       "name": "Contract Generator",
       "description": "Free contract template generator with guided legal document resources, instant PDF drafts, and privacy-first browser-based forms.",
       "publisher": {
-        "@id": "https://contract-template-generator-lake.vercel.app/#organization"
+        "@id": "https://contractpdf.com/#organization"
       },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://contract-template-generator-lake.vercel.app/templates/?q={search_term_string}",
+        "target": "https://contractpdf.com/templates/?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -85,13 +90,13 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://contract-template-generator-lake.vercel.app"
+        "item": "https://contractpdf.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Templates",
-        "item": "https://contract-template-generator-lake.vercel.app/templates"
+        "item": "https://contractpdf.com/templates"
       },
       {
         "@type": "ListItem",
@@ -203,7 +208,7 @@
       <header class="page-header">
         <nav class="breadcrumb"><a href="../../index.html">Home</a><span>&gt;</span><a href="../">Templates</a><span>&gt;</span><span>Real Estate &amp; Rental</span><span>&gt;</span><span>Duplex Rental Agreement</span></nav>
         <span class="category-badge">Real Estate &amp; Rental</span>
-        <h1>Free Duplex Rental Agreement — Download PDF Instantly</h1>
+        <h1>Free Duplex Rental Agreement — Download PDF or Word Instantly</h1>
         <p class="page-subtitle">Professional duplex rental agreement for documenting occupancy rights, rent, deposits, maintenance duties, property rules, notices, and landlord-tenant responsibilities.</p>
         <div class="trust-row"><span>Free Forever</span><span>Instant PDF</span><span>No Signup</span><span>18 Fields</span></div>
       </header>
@@ -212,7 +217,10 @@
         <div class="tool-card">
           <h2>Build Your Contract</h2>
           <form id="templateFieldForm" class="field-form"></form>
-          <button id="downloadPdfBtn" class="download-pdf" type="button">Download PDF</button>
+          <div class="download-actions" aria-label="Download options">
+            <button id="downloadPdfBtn" class="download-pdf" type="button">Download PDF</button>
+            <button id="downloadWordBtn" class="download-word" type="button">Download Word</button>
+          </div>
         </div>
         <div class="tool-card tool-preview">
           <div class="preview-wrap">
@@ -242,7 +250,7 @@
         <ol>
           <li><strong>Fill in the form fields with your details.</strong></li>
           <li><strong>Preview your contract updating live on screen.</strong></li>
-          <li><strong>Click Download PDF — your contract is ready instantly.</strong></li>
+          <li><strong>Click Download PDF or Download Word — your contract is ready instantly.</strong></li>
         </ol>
       </section>
 

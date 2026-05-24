@@ -197,7 +197,50 @@
     downloadContractPdfFromData(data, filename || title);
   }
 
+  function wordDocumentHtml(element, filename) {
+    const article = element?.querySelector?.(".contract-document") || element;
+    const title = normalizeText(article?.querySelector?.(".contract-title h1")?.textContent || filename || "Contract Agreement");
+    const body = article?.innerHTML || `<p>${normalizeText(element?.textContent || "")}</p>`;
+    return `<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>${title.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</title>
+    <style>
+      body { font-family: Georgia, "Times New Roman", serif; color: #111827; line-height: 1.55; }
+      .contract-document { max-width: 760px; margin: 0 auto; }
+      .contract-title { margin-bottom: 28px; padding-bottom: 18px; text-align: center; border-bottom: 2px solid #111827; }
+      .contract-title h1 { margin: 0; font-size: 22pt; text-transform: uppercase; letter-spacing: 0.04em; }
+      .contract-title p { margin: 8px 0 0; color: #4b5563; font-style: italic; }
+      section { margin: 22px 0; }
+      h2 { margin: 0 0 8px; font-size: 13pt; }
+      p { margin: 0 0 10px; font-size: 11pt; }
+      .contract-party-grid, .signature-grid { display: table; width: 100%; table-layout: fixed; border-spacing: 14px; }
+      .contract-party-card, .signature-grid div { display: table-cell; vertical-align: top; }
+      .contract-party-card { padding: 10px; border: 1px solid #d7dde8; background: #fafafa; }
+      .signature-grid div { padding-top: 34px; border-top: 1.5px solid #111827; }
+      .contract-blank { display: inline-block; min-width: 120px; border-bottom: 1px solid #6b7280; }
+    </style>
+  </head>
+  <body><div class="contract-document">${body}</div></body>
+</html>`;
+  }
+
+  function downloadContractWordFromElement(element, filename) {
+    const html = wordDocumentHtml(element, filename);
+    const blob = new Blob(["\ufeff", html], { type: "application/msword;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${slugify(filename || "contract")}.doc`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
   window.downloadContractPdfFromData = downloadContractPdfFromData;
   window.downloadContractPdfFromElement = downloadContractPdfFromElement;
   window.downloadContractPdf = downloadContractPdf;
+  window.downloadContractWordFromElement = downloadContractWordFromElement;
 })();

@@ -201,8 +201,8 @@ function setDashboardSearch(query) {
 }
 
 function updatePageSeo(template) {
-  const title = `Free ${template.name} — Download PDF | Contract Generator`;
-  const description = `Generate a free ${template.name} and download as PDF instantly. Fill in your details and get a professional ${template.name} in seconds. No signup required.`;
+  const title = `Free ${template.name} — Download PDF or Word | Contract Generator`;
+  const description = `Generate a free ${template.name} and download as PDF or Word instantly. Fill in your details and get a professional ${template.name} in seconds. No signup required.`;
   document.title = title;
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) metaDescription.setAttribute("content", description);
