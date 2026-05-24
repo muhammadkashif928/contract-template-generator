@@ -53,7 +53,7 @@
         </div>
         <div class="footer-bottom">
           <div>© ${currentYear} Contract Generator. All Rights Reserved.</div>
-          <div class="footer-center">🔒 SSL Secured | ⚡ Free Forever | 📄 50+ Templates</div>
+          <div class="footer-center">🔒 SSL Secured | ⚡ Free Forever | 📄 500+ Templates</div>
           <div class="footer-social footer-legal-links" aria-label="Legal links">
             <a href="${base}terms.html#disclaimer">Disclaimer</a>
             <a href="${base}terms.html">Terms & Conditions</a>

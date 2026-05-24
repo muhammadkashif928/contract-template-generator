@@ -26,7 +26,7 @@
     const terms = template.fields.map((field, index) => `${index + 1}. ${titleize(field)}: ${fieldValue(field)}`).join("\n");
     return `${template.name.toUpperCase()}
 
-This draft is generated for informational purposes only and should be reviewed before signing.
+This draft is generated for informational purposes only and should be reviewed before signing. The parties should adapt the document for the governing jurisdiction, transaction value, industry requirements, and their specific facts.
 
 1. Parties
 The parties agree to enter into this ${template.name} according to the information completed below.
@@ -34,13 +34,19 @@ The parties agree to enter into this ${template.name} according to the informati
 2. Key Terms
 ${terms}
 
-3. Performance
-Each party will perform its responsibilities in good faith and within the timing, payment, ownership, confidentiality, and cancellation terms stated above.
+3. Scope and Performance
+Each party will perform its responsibilities in good faith and within the timing, payment, ownership, confidentiality, approval, delivery, and cancellation terms stated above.
 
-4. Changes
-Changes to scope, price, deadlines, rights, or obligations should be documented in writing and accepted by the parties.
+4. Payment, Records, and Cooperation
+Payment obligations, deposits, schedules, rates, reimbursements, and recordkeeping duties should be handled according to the completed terms. The parties will cooperate reasonably and provide information needed to perform the agreement.
 
-5. Legal Review
+5. Confidentiality and Ownership
+Confidential information should be protected and used only for the purpose of this agreement. Ownership, license, access, transfer, and usage rights are limited to the rights expressly stated in the completed terms.
+
+6. Changes and Termination
+Changes to scope, price, deadlines, rights, obligations, cancellation terms, or termination rights should be documented in writing and accepted by the parties.
+
+7. Legal Review
 This template is not legal advice. Consult a qualified attorney before signing any legal agreement.
 
 Signatures

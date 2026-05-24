@@ -83,7 +83,7 @@ function validateTemplates() {
 
 function renderCategories() {
   const counts = categoryCounts();
-  const categories = ["all", "featured", "freelance", "employment", "rental", "business", "ip", "personal", "construction", "events", "vehicle"];
+  const categories = ["all", "featured", ...Object.keys(CATEGORY_LABELS).filter((category) => !["all", "featured"].includes(category))];
   els.categoryList.innerHTML = categories.map((category) => `
     <button class="category-button ${state.category === category ? "active" : ""}" type="button" data-category="${category}">
       <span>${escapeHtml(CATEGORY_LABELS[category])}</span>
@@ -112,6 +112,7 @@ function renderTemplates() {
       <div class="badge-row">
         ${template.featured ? `<span class="badge">Featured</span>` : ""}
         ${template.popular ? `<span class="badge">Popular</span>` : ""}
+        ${template.premium ? `<span class="badge premium-badge">Premium</span>` : ""}
         <span class="badge">${escapeHtml(CATEGORY_LABELS[template.category])}</span>
       </div>
       <h3>${escapeHtml(template.name)}</h3>
@@ -143,6 +144,7 @@ function renderBuilder() {
     <span class="badge">${escapeHtml(template.icon)} ${escapeHtml(CATEGORY_LABELS[template.category])}</span>
     <span class="badge">${escapeHtml(template.searches)}</span>
     ${template.featured ? `<span class="badge">Featured</span>` : ""}
+    ${template.premium ? `<span class="badge premium-badge">Premium</span>` : ""}
   `;
   els.selectedName.textContent = template.name;
   els.selectedDescription.textContent = template.description;
@@ -239,28 +241,38 @@ function generateContract() {
 
 Draft Date: ${today}
 
+IMPORTANT NOTICE
+This document is a professionally structured template for informational purposes. It should be reviewed and adapted for the governing jurisdiction, transaction value, regulatory requirements, and the parties' specific circumstances before signature.
+
 1. Parties
 ${partiesLine(template)}
 
-2. Purpose
-This ${template.name} is intended to document the agreement between the parties regarding: ${template.description.toLowerCase()}.
+2. Background and Purpose
+The parties intend to enter into this ${template.name} to document their respective rights, duties, commercial expectations, approval requirements, payment obligations, risk allocation, and signature-ready terms. This agreement concerns: ${template.description.toLowerCase()}
 
 3. Key Terms
 ${terms}
 
-4. Performance
+4. Scope, Performance, and Cooperation
 ${categoryClauses(template)}
+Each party will cooperate in good faith, provide information reasonably required to complete the arrangement, and perform its obligations in a timely, professional, and commercially reasonable manner.
 
-5. Payment and Timing
-Any payment, fee, deposit, rent, salary, rate, schedule, deadline, start date, end date, or delivery date listed in the Key Terms section is incorporated into this agreement.
+5. Payment, Fees, and Timing
+Any payment, fee, deposit, rent, salary, rate, schedule, milestone, deadline, start date, end date, or delivery date listed in the Key Terms section is incorporated into this agreement. Unless otherwise stated, payments should be made in cleared funds by the due date and disputed amounts should be raised promptly in writing.
 
-6. Changes
-Any material change to scope, price, timing, rights, responsibilities, or cancellation terms should be made in writing and accepted by all required parties.
+6. Confidentiality, Records, and Ownership
+The parties will protect confidential information received under this agreement and use it only for the agreed purpose. Ownership, license, access, usage, transfer, and recordkeeping terms are limited to the rights expressly stated in this document or any written amendment.
 
-7. Governing Terms
+7. Changes, Cancellation, and Termination
+Any material change to scope, price, timing, rights, responsibilities, cancellation terms, or termination rights should be made in writing and accepted by all required parties. Termination does not affect payment obligations, confidentiality duties, accrued rights, or provisions intended to survive.
+
+8. Representations and Compliance
+Each party represents that it has authority to enter into this agreement and will comply with applicable laws, permits, policies, and professional standards. Any warranties, limitations of liability, indemnities, dispute terms, or governing law requirements should be reviewed before signing.
+
+9. Legal Review
 The parties should review this draft for local legal requirements before signing. This generated document is a starting point and is not legal advice.
 
-8. Signatures
+10. Signatures
 
 Party Signature: _______________________________  Date: _______________
 

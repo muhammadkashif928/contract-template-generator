@@ -1125,6 +1125,11 @@ button {
   font-weight: 800;
 }
 
+.premium-badge {
+  color: #3b2b00;
+  background: #fff1b8;
+}
+
 .template-card h3 {
   margin: 0;
   font-size: 17px;
