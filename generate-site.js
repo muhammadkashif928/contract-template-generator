@@ -914,6 +914,12 @@ function write(filePath, content) {
   fs.writeFileSync(filePath, content);
 }
 
+function removeFile(filePath) {
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+  }
+}
+
 function esc(value) {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -1596,13 +1602,20 @@ function adsTxt() {
 `;
 }
 
+function redirects() {
+  return [
+    ...blogPosts.map((post) => `/blog/${post.slug}.html /blog/${post.slug}/ 301`),
+    "/index.html / 301"
+  ].join("\n") + "\n";
+}
+
 write("templates/index.html", templatesIndex());
 for (const template of TEMPLATES) {
   write(`templates/${slugFor(template)}/index.html`, templatePage(template));
 }
 write("blog/index.html", blogIndex());
 for (const post of blogPosts) {
-  write(`blog/${post.slug}.html`, blogPost(post, 1));
+  removeFile(`blog/${post.slug}.html`);
   write(`blog/${post.slug}/index.html`, blogPost(post, 2));
 }
 write("about.html", aboutPage());
@@ -1612,5 +1625,6 @@ write("terms.html", termsPage());
 write("sitemap.xml", sitemap());
 write("robots.txt", robots());
 write("ads.txt", adsTxt());
+write("_redirects", redirects());
 
-console.log(`Generated ${TEMPLATES.length} template pages, ${blogPosts.length} blog posts, sitemap, robots, ads.txt, about, privacy, contact and terms.`);
+console.log(`Generated ${TEMPLATES.length} template pages, ${blogPosts.length} blog posts, redirects, sitemap, robots, ads.txt, about, privacy, contact and terms.`);
